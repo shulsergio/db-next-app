@@ -1,0 +1,8 @@
+/node_modules
+
+.env
+
+.vscode
+.DS_Store
+.idea
+mongodb+srv://sergoS:<db_password>@member.syvr1ai.mongodb.net/?retryWrites=true&w=majority&appName=member
