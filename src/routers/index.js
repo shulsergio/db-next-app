@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import authRouter from './auth.js';
 import plansRouter from './plans.js';
+import adminRouter from './admin.js';
 
-const router = Router();
+const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
-router.use('/auth', authRouter);
-router.use('/plans', plansRouter);
-export default router;
+indexRouter.use('/auth', authRouter);
+indexRouter.use('/plans', plansRouter);
+indexRouter.use('/admin', adminRouter);
+
+export default indexRouter;
