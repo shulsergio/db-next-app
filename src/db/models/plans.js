@@ -8,7 +8,8 @@ const plansSchema = new Schema(
     focusSOplan: { type: Number, required: true },
     focusSOfact: { type: Number, required: true },
     topBonus: { type: Number, required: true },
-    // userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+    date: { type: Date, required: true },
+    //682f8e184a19781cae4ce9e8 userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   { timestamps: true, versionKey: false },
 );
