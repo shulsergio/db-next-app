@@ -7,6 +7,7 @@ import pino from 'pino-http';
 export const setupServer = () => {
   const app = express();
   const PORT = process.env.PORT || 3000;
+
   app.use(express.json());
   app.use(cookieParser());
   app.use(cors());
@@ -20,7 +21,7 @@ export const setupServer = () => {
   app.get('/', (req, res) => {
     res.json({ message: 'all is ok' });
   });
-
+  console.log('***** CONSOLE - SERVER - IS OK');
   app.use(router);
 
   app.listen(PORT, () => {

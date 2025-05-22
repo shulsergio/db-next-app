@@ -7,14 +7,23 @@ import {
   refreshUserSession,
 } from '../services/auth.js';
 
-export const registerUserController = async (req, res) => {
-  const user = registerUser(req.body);
-  res.status(201).json({
-    status: 201,
-    message: 'User create!',
-    data: user,
-  });
+export const registerUserController = async (req, res, next) => {
+  console.log('registerUserController: Start');
+  try {
+    const user = await registerUser(req.body);
+    console.log('registerUserController: User created:', user._id);
+    console.log('reeeeeeeeeggggg USER', user);
+    res.status(201).json({
+      status: 201,
+      message: 'User created!', // Изменил на "created!" для единообразия
+      data: user,
+    });
+  } catch (error) {
+    console.error('Error in registerUserController:', error); // Логируем ошибку для отладки
+    next(error); // Передаем ошибку следующему middleware (обработчику ошибок)
+  }
 };
+
 //loginUser
 export const loginUserController = async (req, res) => {
   const user = await UsersCollection.findOne({ email: req.body.email });

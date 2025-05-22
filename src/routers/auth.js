@@ -8,9 +8,7 @@ import {
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const authRouter = Router();
-authRouter.post('/register', (req, res) => {
-  ctrlWrapper(registerUserController);
-});
+authRouter.post('/register', ctrlWrapper(registerUserController));
 authRouter.post('/login', (req, res) => {
   ctrlWrapper(loginUserController);
 });

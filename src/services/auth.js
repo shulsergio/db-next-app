@@ -6,18 +6,50 @@ import { randomBytes } from 'crypto';
 import { FIFTEEN_MINUTES, REFRESH_TOKEN } from '../constants/index.js';
 
 //----- registerUser
+// export const registerUser = async (payload) => {
+//   const user = await UsersCollection.findOne({
+//     email: payload.email,
+//   });
+//   if (user) throw createHttpError(409, 'Email in use');
+//   const encryptedPassword = await bcrypt.hash(payload.password, 10);
+
+//   return await UsersCollection.create({
+//     ...payload,
+//     password: encryptedPassword,
+//   });
+// };
 export const registerUser = async (payload) => {
+  console.log('registerUser: Start');
+  console.log(
+    'registerUser: Searching for existing user with email:',
+    payload.email,
+  );
   const user = await UsersCollection.findOne({
     email: payload.email,
   });
-  if (user) throw createHttpError(409, 'Email in use');
-  const encryptedPassword = await bcrypt.hash(payload.password, 10);
+  console.log('registerUser: findOne result:', user ? 'found' : 'not found');
 
-  return await UsersCollection.create({
+  if (user) {
+    console.log(
+      'registerUser: Email already in use, throwing 409 ConflictError',
+    );
+    throw createHttpError(409, 'Email in use');
+  }
+
+  console.log('registerUser: Hashing password...');
+  const encryptedPassword = await bcrypt.hash(payload.password, 10);
+  console.log('registerUser: Password hashed.');
+
+  console.log('registerUser: Creating new user in DB...');
+  const newUser = await UsersCollection.create({
     ...payload,
     password: encryptedPassword,
   });
+  console.log('registerUser: User successfully created in DB:', newUser._id);
+
+  return newUser;
 };
+
 //----- loginUser
 export const loginUser = async (payload) => {
   const user = await UsersCollection.findOne({
