@@ -15,18 +15,18 @@ export const registerUserController = async (req, res, next) => {
     console.log('reeeeeeeeeggggg USER', user);
     res.status(201).json({
       status: 201,
-      message: 'User created!', // Изменил на "created!" для единообразия
+      message: 'User created!',
       data: user,
     });
   } catch (error) {
-    console.error('Error in registerUserController:', error); // Логируем ошибку для отладки
-    next(error); // Передаем ошибку следующему middleware (обработчику ошибок)
+    console.error('Error in registerUserController:', error);
+    next(error);
   }
 };
 
 //loginUser
 export const loginUserController = async (req, res) => {
-  const user = await UsersCollection.findOne({ email: req.body.email });
+  const user = await UsersCollection.findOne({ mcsId: req.body.mcsId });
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
   }
@@ -45,8 +45,13 @@ export const loginUserController = async (req, res) => {
     message: 'Successfully logged in an user!',
     data: {
       user: {
-        name: user.name, // Имя пользователя
-        email: user.email, // Email пользователя
+        name: user.name,
+        email: user.email,
+        mcsId: user.mcsId,
+        role: user.role,
+        userType: user.userType,
+        gender: user.gender,
+        uniform: user.uniform,
       },
       accessToken: session.accessToken,
     },

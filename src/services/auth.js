@@ -8,7 +8,7 @@ import { FIFTEEN_MINUTES, REFRESH_TOKEN } from '../constants/index.js';
 //----- registerUser
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({
-    email: payload.email,
+    mcsId: payload.mcsId,
   });
   if (user) throw createHttpError(409, 'Email in use');
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
@@ -22,7 +22,7 @@ export const registerUser = async (payload) => {
 //----- loginUser
 export const loginUser = async (payload) => {
   const user = await UsersCollection.findOne({
-    email: payload.email,
+    mcsId: payload.mcsId,
   });
   if (!user) {
     throw createHttpError(404, 'User not found');
