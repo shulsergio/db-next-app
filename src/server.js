@@ -5,10 +5,11 @@ import cookieParser from 'cookie-parser';
 import pino from 'pino-http';
 
 const allowedOrigins = [
+  'http://new-next-project-sand.vercel.app',
+  'https://new-next-project-sand.vercel.app',
   'http://localhost:4000',
   'http://localhost:5173',
   'http://localhost:3000',
-  'http://new-next-project-sand.vercel.app',
 ];
 
 const corsOptions = {
