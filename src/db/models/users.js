@@ -8,7 +8,7 @@ const usersSchema = new Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ['admin', 'promoter', 'mechendiser', 'trainer', 'user'],
+      enum: ['admin', 'promoter', 'merchendiser', 'trainer', 'user'],
       default: 'promoter',
     },
     userType: {
@@ -16,8 +16,9 @@ const usersSchema = new Schema(
       enum: ['CE', 'AV', 'DA', 'MDA', 'SDA'],
       default: 'CE',
     },
-    gender: { type: String, enum: ['man', 'woman'], default: 'men' },
+    gender: { type: String, enum: ['man', 'woman'], default: 'man' },
     uniform: { type: String },
+    shop: { type: String, required: true },
     // userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   { timestamps: true, versionKey: false },

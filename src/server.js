@@ -8,7 +8,6 @@ const allowedOrigins = [
   'http://new-next-project-sand.vercel.app',
   'https://new-next-project-sand.vercel.app',
   'http://localhost:4000',
-  'http://localhost:5173',
   'http://localhost:3000',
 ];
 

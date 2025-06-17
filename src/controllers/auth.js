@@ -11,8 +11,8 @@ export const registerUserController = async (req, res, next) => {
   console.log('registerUserController: Start');
   try {
     const user = await registerUser(req.body);
-    console.log('registerUserController: User created:', user._id);
-    console.log('reeeeeeeeeggggg USER', user);
+    // console.log('registerUserController: User created:', user._id);
+    // console.log('reeeeeeeeeggggg USER', user);
     res.status(201).json({
       status: 201,
       message: 'User created!',
@@ -52,6 +52,7 @@ export const loginUserController = async (req, res) => {
         userType: user.userType,
         gender: user.gender,
         uniform: user.uniform,
+        shop: user.shop,
       },
       accessToken: session.accessToken,
     },
