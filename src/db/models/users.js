@@ -14,11 +14,17 @@ const usersSchema = new Schema(
     userType: {
       type: String,
       enum: ['CE', 'AV', 'DA', 'MDA', 'SDA'],
-      default: 'CE',
+      default: 'DA',
+    },
+    region: {
+      type: String,
+      enum: ['Dnipro', 'Kharkiv', 'Kyiv', 'Lviv', 'Odesa'],
+      default: 'Kharkiv',
     },
     gender: { type: String, enum: ['man', 'woman'], default: 'man' },
     uniform: { type: String },
     shop: { type: String, required: true },
+    lastVisit: { type: Date, default: Date.now },
     // userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   { timestamps: true, versionKey: false },

@@ -40,19 +40,27 @@ export const loginUserController = async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now() + REFRESH_TOKEN),
   });
+
+  const updatedUser = await UsersCollection.findByIdAndUpdate(
+    user._id,
+    { lastVisit: new Date() },
+    { new: true },
+  );
   res.json({
     status: 200,
     message: 'Successfully logged in an user!',
     data: {
       user: {
-        name: user.name,
-        email: user.email,
-        mcsId: user.mcsId,
-        role: user.role,
-        userType: user.userType,
-        gender: user.gender,
-        uniform: user.uniform,
-        shop: user.shop,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        mcsId: updatedUser.mcsId,
+        role: updatedUser.role,
+        userType: updatedUser.userType,
+        region: updatedUser.region,
+        gender: updatedUser.gender,
+        uniform: updatedUser.uniform,
+        shop: updatedUser.shop,
+        lastVisit: updatedUser.lastVisit,
       },
       accessToken: session.accessToken,
     },
