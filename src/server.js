@@ -6,7 +6,7 @@ import pino from 'pino-http';
 
 const allowedOrigins = [
   'http://new-next-project-sand.vercel.app',
-  'https://so-project.vercel.app/',
+  'https://sams-project.vercel.app/',
   'https://new-next-project-sand.vercel.app',
   'http://localhost:4000',
   'http://localhost:3000',
