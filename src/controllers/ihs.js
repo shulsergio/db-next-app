@@ -14,7 +14,7 @@ console.log('***** CONSOLE - getIhsController - shopId:', storeId);
 
 
     const ihs = await getIhs({ storeId: storeId });
-
+console.log('***** CONSOLE - getIhsController - ihs:', ihs);
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved ihs!',
