@@ -3,7 +3,17 @@ import { getIhs } from "../services/ihs";
 
 export const getIhsController = async (req, res, next) => {
   try {
-    const ihs = await getIhs({ userId: req.user._id });
+    const shopId = req.query.shopId;
+
+       if (!shopId) {
+      return res.status(400).json({
+        status: 400,
+        message: 'Bad Request: shopId is required.',
+      });
+    }
+
+
+    const ihs = await getIhs({ shopId: shopId });
 
     res.status(200).json({
       status: 200,
