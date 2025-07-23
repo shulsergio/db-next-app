@@ -4,5 +4,5 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { Router } from 'express';
 const ihsRouter = Router();
 
-ihsRouter.get('/', authenticate, ctrlWrapper(getIhsController));
+ihsRouter.get('/', authenticate, ctrlWrapper(getIhsController)); 
 export default ihsRouter;

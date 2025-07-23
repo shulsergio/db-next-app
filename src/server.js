@@ -42,7 +42,7 @@ export const setupServer = () => {
     res.json({ message: 'all is ok' });
   });
   console.log('***** CONSOLE - SERVER - IS OK');
-  app.use('/ihsData', router);
+app.use(router);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
