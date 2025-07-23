@@ -3,7 +3,7 @@ import { getIhs } from "../services/ihs.js";
 
 export const getIhsController = async (req, res, next) => {
   try {
-    const storeId = req.query.shopId;
+    const storeId = req.query.storeId;
 console.log('***** CONSOLE - getIhsController - shopId:', storeId);
        if (!storeId) {
       return res.status(400).json({
