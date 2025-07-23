@@ -1,4 +1,4 @@
-import { IhsCollection } from "../db/models/ihsdata";
+import { IhsCollection } from "../db/models/ihsdata.js";
 
 
 export const getIhs = async ({ shopId }) => {

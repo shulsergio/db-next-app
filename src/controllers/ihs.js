@@ -1,4 +1,4 @@
-import { getIhs } from "../services/ihs";
+import { getIhs } from "../services/ihs.js";
 
 
 export const getIhsController = async (req, res, next) => {
