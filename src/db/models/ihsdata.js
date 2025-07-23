@@ -49,4 +49,4 @@ ihsSchema.methods.toJSON = function () {
   return obj;
 };
 
-export const IhsCollection = model('ihsdata', ihsSchema);
+export const IhsCollection = model('ihsdatas', ihsSchema);

@@ -15,4 +15,4 @@ NewdataSchema.methods.toJSON = function () {
   return obj;
 };
 
-export const NewdataCollection = model('newdata', NewdataSchema);
+export const NewdataCollection = model('newdatas', NewdataSchema);
