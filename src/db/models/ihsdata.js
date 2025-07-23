@@ -31,7 +31,6 @@ const ihsSchema = new Schema(
     {
 storeId:{
     type: String,
-
     required: true,
     unique: true
 },    
