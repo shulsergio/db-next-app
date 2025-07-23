@@ -34,7 +34,7 @@ storeId:{
     required: true,
     unique: true
 },    
-ihs:{
+ihsData:{
     type:[IhsDataSchema],
     required: true
 },

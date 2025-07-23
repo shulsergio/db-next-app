@@ -4,7 +4,7 @@ import { getIhs } from "../services/ihs.js";
 export const getIhsController = async (req, res, next) => {
   try {
     const storeId = req.query.storeId;
-console.log('***** CONSOLE - getIhsController - shopId:', storeId);
+// console.log('***** CONSOLE - getIhsController - shopId:', storeId);
        if (!storeId) {
       return res.status(400).json({
         status: 400,
@@ -14,9 +14,8 @@ console.log('***** CONSOLE - getIhsController - shopId:', storeId);
 
 
     const data = await getIhs({ storeId: storeId });
-console.log('***** CONSOLE - getIhsController - data:', data);
-console.log('***** CONSOLE - getIhsController - {data}:', {data});
-console.log('***** CONSOLE - getIhsController - ihsData:', data.ihsData);
+// console.log('***** CONSOLE - getIhsController - data:', data);
+// console.log('***** CONSOLE - getIhsController - {data}:', {data});
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved ihs!',
