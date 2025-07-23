@@ -4,7 +4,7 @@ import { getIhs } from "../services/ihs";
 export const getIhsController = async (req, res, next) => {
   try {
     const shopId = req.query.shopId;
-
+console.log('***** CONSOLE - getIhsController - shopId:', shopId);
        if (!shopId) {
       return res.status(400).json({
         status: 400,
