@@ -9,5 +9,6 @@ console.log('***** CONSOLE - index - IS OK');
 indexRouter.use('/auth', authRouter);
 indexRouter.use('/plans', plansRouter);
 indexRouter.use('/admin', adminRouter);
-indexRouter.use('/ihsData', ihsRouter);
+indexRouter.use('/ihsdata', ihsRouter);
+indexRouter.use('/newdata', ihsRouter);
 export default indexRouter;
