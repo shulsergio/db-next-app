@@ -1,6 +1,6 @@
 import { IhsCollection } from "../db/models/ihsdata";
 
 
-export const getIhs = async (query = {}) => {
-  return await IhsCollection.find(query);
+export const getIhs = async ({ shopId }) => {
+  return await IhsCollection.find({ storeId: shopId });
 };
