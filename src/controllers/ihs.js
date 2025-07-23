@@ -3,9 +3,9 @@ import { getIhs } from "../services/ihs.js";
 
 export const getIhsController = async (req, res, next) => {
   try {
-    const shopId = req.query.shopId;
-console.log('***** CONSOLE - getIhsController - shopId:', shopId);
-       if (!shopId) {
+    const storeId = req.query.shopId;
+console.log('***** CONSOLE - getIhsController - shopId:', storeId);
+       if (!storeId) {
       return res.status(400).json({
         status: 400,
         message: 'Bad Request: shopId is required.',
@@ -13,7 +13,7 @@ console.log('***** CONSOLE - getIhsController - shopId:', shopId);
     }
 
 
-    const ihs = await getIhs({ shopId: shopId });
+    const ihs = await getIhs({ storeId: storeId });
 
     res.status(200).json({
       status: 200,
