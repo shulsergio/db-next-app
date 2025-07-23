@@ -13,13 +13,15 @@ console.log('***** CONSOLE - getIhsController - shopId:', storeId);
     }
 
 
-    const ihs = await getIhs({ storeId: storeId });
-console.log('***** CONSOLE - getIhsController - ihs:', ihs);
+    const data = await getIhs({ storeId: storeId });
+console.log('***** CONSOLE - getIhsController - data:', data);
+console.log('***** CONSOLE - getIhsController - {data}:', {data});
+console.log('***** CONSOLE - getIhsController - ihsData:', data.ihsData);
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved ihs!',
       data: {
-        ihs,
+        data,
       },
     });
   } catch (error) {
