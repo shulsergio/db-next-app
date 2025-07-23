@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-const newdataSchema = new Schema(
+const NewdataSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId },
     data:{type:String, required: true},
@@ -9,10 +9,10 @@ const newdataSchema = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-newdataSchema.methods.toJSON = function () {
+NewdataSchema.methods.toJSON = function () {
   const obj = this.toObject();
   delete obj.password;
   return obj;
 };
 
-export const PlansCollection = model('newdata', newdataSchema);
+export const NewdataCollection = model('newdata', NewdataSchema);

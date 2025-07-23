@@ -3,12 +3,12 @@ import { getNewdata } from '../services/newdata.js';
 export const getNewdataController = async (req, res, next) => {
   try {
     // const plans = await getData({ userId: req.user._id });
-const plans = await getNewdata({ });
+const newdata = await getNewdata({});
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved data!',
       data: {
-        plans,
+        newdata,
       },
     });
   } catch (error) {

@@ -1,5 +1,6 @@
-import { NewdataCollection } from '../db/models/newdata.js';
+import { NewdataCollection } from "../db/models/newdata.js";
+
 
 export const getNewdata = async () => {
-  return await NewdataCollection.find({}).limit(5);
+    return await NewdataCollection.find({}).limit(5);
 };
