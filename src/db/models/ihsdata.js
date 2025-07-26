@@ -18,7 +18,7 @@ const IhsDataSchema = new Schema({
     required: true
   },
   week: {
-    type: Number,
+    type: String,
     required: true
   },
   categories: {
