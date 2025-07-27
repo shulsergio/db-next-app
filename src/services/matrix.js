@@ -1,4 +1,4 @@
-import { MatrixCollection } from "../db/models/matrixdata";
+import { MatrixCollection } from "../db/models/matrixdata.js";
 
 
 export const getMatrix = async ({ storeId }) => {
