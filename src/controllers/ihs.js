@@ -11,8 +11,6 @@ export const getIhsController = async (req, res, next) => {
         message: 'Bad Request: shopId is required.',
       });
     }
-
-
     const data = await getIhs({ storeId: storeId });
 // console.log('***** CONSOLE - getIhsController - data:', data);
 // console.log('***** CONSOLE - getIhsController - {data}:', {data});

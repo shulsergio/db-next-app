@@ -10,4 +10,5 @@ indexRouter.use('/auth', authRouter);
 indexRouter.use('/plans', plansRouter);
 indexRouter.use('/admin', adminRouter);
 indexRouter.use('/ihsdatas', ihsRouter);
+indexRouter.use('/matrixDatas', ihsRouter);
 export default indexRouter;
