@@ -34,6 +34,12 @@ export const loginUserController = async (req, res) => {
   }
   const session = await loginUser(req.body);
 
+    const updatedUser = await UsersCollection.findByIdAndUpdate(
+      user._id,
+      { lastVisit: new Date() },
+      { new: true }
+    );
+
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     expires: new Date(Date.now() + REFRESH_TOKEN),
@@ -43,16 +49,13 @@ export const loginUserController = async (req, res) => {
     expires: new Date(Date.now() + REFRESH_TOKEN),
   });
 
-  const updatedUser = await UsersCollection.findByIdAndUpdate(
-    user._id,
-    { lastVisit: new Date() },
-    { new: true },
-  );
+
   res.json({
     status: 200,
     message: 'Successfully logged in an user!',
     data: {
       user: {
+  id: updatedUser._id,  
         name: updatedUser.name,
         email: updatedUser.email,
         mcsId: updatedUser.mcsId,
