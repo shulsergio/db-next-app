@@ -1,3 +1,4 @@
+import createHttpError from 'http-errors';
 import { REFRESH_TOKEN } from '../constants/index.js';
 import { UsersCollection } from '../db/models/users.js';
 import {
@@ -5,6 +6,7 @@ import {
   logoutUser,
   registerUser,
   refreshUserSession,
+  updateUniform,
 } from '../services/auth.js';
 
 export const registerUserController = async (req, res, next) => {
@@ -103,4 +105,28 @@ export const refreshUserSessionController = async (req, res) => {
       accessToken: session.accessToken,
     },
   });
+};
+
+export const updateUniformController = async (req, res, next) => {
+  try {
+    if (!req.user || !req.user._id) {
+      return next(createHttpError(401, 'Unauthorized: User not authenticated.'));
+    }
+    const userId = req.user._id;
+    const { newUniformValue } = req.body;
+
+    if (!newUniformValue || typeof newUniformValue !== 'string' || newUniformValue.trim() === '') {
+      return next(createHttpError(400, 'Invalid or empty uniform value.'));
+    }
+    const updatedUser = await updateUniform(userId, newUniformValue.trim());
+
+    res.status(200).json({
+      status: 200,
+      message: 'Uniform updated successfully!',
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.error('Error in updateUniformController:', error);
+    next(error);
+  }
 };

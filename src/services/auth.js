@@ -82,3 +82,17 @@ export const refreshUserSession = async (sessionId, refreshToken) => {
     ...newSession,
   });
 };
+
+
+//----- updateUniform
+export const updateUniform = async (userId, newUniformValue) => {
+  const user = await UsersCollection.findByIdAndUpdate(
+    userId,
+    { uniform: newUniformValue },
+    { new: true }
+  );
+  if (!user) {
+    throw new Error('User not found');
+  }
+  return user;
+};
