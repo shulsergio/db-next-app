@@ -8,6 +8,7 @@ import matrixRouter from './matrix.js';
 const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
 indexRouter.use('/auth', authRouter);
+indexRouter.use('/users', authRouter);
 indexRouter.use('/plans', plansRouter);
 indexRouter.use('/admin', adminRouter);
 indexRouter.use('/ihsdatas', ihsRouter);
