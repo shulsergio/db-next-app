@@ -26,31 +26,29 @@ Week
 */
 
 
+const IdSchema = new Schema({
+  mcsId: {
+    type: String,
+    required: true,
+    unique: true
+  }
+}, { _id: false });  
+ 
 const topBonusesSchema = new Schema({
-    _id: {
-        mcsId: {
-            type: String,
-            required: true,
-            unique: true
-        }
-    },
-    data: [
-        {
-            Account: { type: String, required: true },
-            Item: { type: String, required: true },
-            Qty: { type: Number, required: true },
-            bonus: { type: Number, required: true },
-            PRD: { type: String, required: true },
-            Day: { type: String, required: true },
-            Week: { type: String, required: true }
-        }
-    ]
-},
-{
-    timestamps: true,
-    versionKey: false,
-    _id: false  
-});
+  _id: IdSchema, 
+  data: [
+    {
+      Account: { type: String, required: true },
+      Item: { type: String, required: true },
+      Qty: { type: Number, required: true },
+      bonus: { type: Number, required: true },
+      PRD: { type: String, required: true },
+      Day: { type: String, required: true },
+      Week: { type: String, required: true },
+    }
+  ]
+}, { _id: false });  
+
 
 topBonusesSchema.methods.toJSON = function () {
     const obj = this.toObject();
