@@ -21,11 +21,13 @@ export const getPlansController = async (req, res, next) => {
 export const getTopBonusesByStoreController = async (req, res, next) => {
   try {
     const { id } = req.params;
+    console.log('!!!!!!!  Fetching bonuses for store ID:', id);
     const bonuses = await getTopBonusesByStore(id);
 
     if (!bonuses) {
       return next(createHttpError(404, 'Bonuses not found for this store.'));
     }
+    console.log('!!!!!!! Bonuses retrieved:', bonuses);
 
     res.status(200).json({
       status: 200,
