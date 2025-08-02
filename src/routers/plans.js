@@ -5,5 +5,5 @@ import { Router } from 'express';
 const plansRouter = Router();
 
 plansRouter.get('/', authenticate, ctrlWrapper(getPlansController));
-plansRouter.get('/:id/bonus', authenticate, ctrlWrapper(getTopBonusesByStoreController));
+plansRouter.get('/topBonus/:storeId', authenticate, ctrlWrapper(getTopBonusesByStoreController));
 export default plansRouter;
