@@ -7,8 +7,8 @@ export const getPlans = async (query = {}) => {
 
 export const getTopBonusesByStore = async (storeId) => {
 
-  return await topBonusesCollection.findOne({ mcsId: storeId });
-
+        return await topBonusesCollection.findOne({ '_id.mcsId': storeId });
+      
 }; 
 
 // .sort({ bonus: -1 }).limit(10);
