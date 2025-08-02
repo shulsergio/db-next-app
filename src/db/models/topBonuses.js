@@ -36,44 +36,26 @@ const topBonusesSchema = new Schema({
     },
     data: [
         {
-            Account: {
-                type: String,
-                required: true
-            },
-            Item: {
-                type: String,
-                required: true
-            },
-            Qty: {
-                type: Number,
-                required: true
-            },
-            bonus: {
-                type: Number,
-                required: true
-            },
-            PRD: {
-                type: String,
-                required: true
-            },
-            Day: {
-                type: String,
-                required: true
-            },
-            Week: {
-                type: String,
-                required: true
-            }
+            Account: { type: String, required: true },
+            Item: { type: String, required: true },
+            Qty: { type: Number, required: true },
+            bonus: { type: Number, required: true },
+            PRD: { type: String, required: true },
+            Day: { type: String, required: true },
+            Week: { type: String, required: true }
         }
     ]
 },
-  { timestamps: true, versionKey: false, _id: false },
-);
+{
+    timestamps: true,
+    versionKey: false,
+    _id: false  
+});
 
 topBonusesSchema.methods.toJSON = function () {
-  const obj = this.toObject();
-  delete obj.password;
-  return obj;
+    const obj = this.toObject();
+    delete obj.password;
+    return obj;
 };
 
 export const topBonusesCollection = model('topBonusesDatas', topBonusesSchema);
