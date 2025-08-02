@@ -6,9 +6,18 @@ export const getPlans = async (query = {}) => {
 };
 
 export const getTopBonusesByStore = async (storeId) => {
+  try {
+        console.log(`[Service Debug] Attempting to find storeId: '${storeId}' in field '_id.mcsId'`);
+        
+        const result = await topBonusesCollection.findOne({ '_id.mcsId': storeId });
 
-        return await topBonusesCollection.findOne({ '_id.mcsId': storeId });
-      
-}; 
+        console.log('[Service Debug] Mongoose query result:', result);
+
+        return result;
+    } catch (error) {
+        console.error('[Service Error] Error while querying database:', error);
+        throw error;
+    }
+};
 
 // .sort({ bonus: -1 }).limit(10);
