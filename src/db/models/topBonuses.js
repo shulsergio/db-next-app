@@ -27,10 +27,12 @@ Week
 
 
 const topBonusesSchema = new Schema({
-    mcsId: {
-        type: String,
-        required: true,
-        unique: true
+    _id: {
+        mcsId: {
+            type: String,
+            required: true,
+            unique: true
+        }
     },
     data: [
         {
@@ -65,7 +67,7 @@ const topBonusesSchema = new Schema({
         }
     ]
 },
-  { timestamps: true, versionKey: false },
+  { timestamps: true, versionKey: false, _id: false },
 );
 
 topBonusesSchema.methods.toJSON = function () {
