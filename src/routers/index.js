@@ -9,6 +9,7 @@ const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
 indexRouter.use('/auth', authRouter);
 indexRouter.use('/users', authRouter);
+indexRouter.use('/shops', authRouter);
 indexRouter.use('/plans', plansRouter);
 indexRouter.use('/admin', adminRouter);
 indexRouter.use('/ihsdatas', ihsRouter);
