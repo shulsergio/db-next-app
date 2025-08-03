@@ -9,7 +9,7 @@ export const getListOfTopBonusesByStore = async (storeId) => {
     try {
         console.log(`[Service Debug] Attempting to find storeId: '${storeId}' in field 'bonusData.storeId'`);
         
-        const result = await topBonusesCollection.findOne({ 'bonusData.storeId': storeId });
+        const result = await topBonusesCollection.findOne({storeId });
 
         console.log('[Service Debug] Mongoose query result:', result);
 
