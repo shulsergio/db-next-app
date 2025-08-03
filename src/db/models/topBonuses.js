@@ -1,59 +1,22 @@
 import { model, Schema } from 'mongoose';
 
-/*
-mcsId
-"C070133812"
+const CategorySchema = new Schema({
+    account: { type: String, required: true },
+    item: { type: String, required: true },
+    soqty: { type: Number, required: true },
+    bonus: { type: Number, required: true },
+    prd: { type: String, required: true },
+    day: { type: String, required: true },
+    week: { type: String, required: true },
+}, { _id: false });
 
-data
-Array (31)
+const BonusDataItemSchema = new Schema({
+    categories: { type: [CategorySchema], required: true },
+    storeId: { type: String, required: true }
+}, { _id: false });
 
-0
-Object
-Account
-"COMFY"
-Item
-"NK24M1030IB/UR"
-Qty
-1
-bonus
-100
-PRD
-"MDA"
-Day
-"06/30"
-Week
-"w27"
-*/
+const TopBonusesSchema = new Schema({
+    bonusData: { type: [BonusDataItemSchema], required: true }
+});
 
-
-const IdSchema = new Schema({
-  mcsId: {
-    type: String,
-    required: true,
-    unique: true
-  }
-}, { _id: false });  
- 
-const topBonusesSchema = new Schema({
-  _id: IdSchema, 
-  data: [
-    {
-      Account: { type: String, required: true },
-      Item: { type: String, required: true },
-      Qty: { type: Number, required: true },
-      bonus: { type: Number, required: true },
-      PRD: { type: String, required: true },
-      Day: { type: String, required: true },
-      Week: { type: String, required: true },
-    }
-  ]
-}, { _id: false });  
-
-
-topBonusesSchema.methods.toJSON = function () {
-    const obj = this.toObject();
-    delete obj.password;
-    return obj;
-};
-
-export const topBonusesCollection = model('topBonusesDatas', topBonusesSchema);
+export const topBonusesCollection = model('topBonusesDatas', TopBonusesSchema);
