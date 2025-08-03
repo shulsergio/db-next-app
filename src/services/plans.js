@@ -13,7 +13,7 @@ console.error('[Service] targetPrds:', targetPrds);
     try {
 const result = await topBonusesCollection.find({ 
   storeId:storeId,
-  'categories.prd': { $in: targetPrds }
+  'bonusData.categories.prd': { $in: targetPrds }
 });
 
 console.error('[Service] result:', result);
