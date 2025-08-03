@@ -12,11 +12,12 @@ const CategorySchema = new Schema({
 
 const BonusDataItemSchema = new Schema({
     categories: { type: [CategorySchema], required: true },
-    storeId: { type: String, required: true }
+
 }, { _id: false });
 
 const TopBonusesSchema = new Schema({
-    bonusData: { type: [BonusDataItemSchema], required: true }
+    bonusData: { type: [BonusDataItemSchema], required: true },
+        storeId: { type: String, required: true }
 });
 
 export const topBonusesCollection = model('topBonusesDatas', TopBonusesSchema);
