@@ -1,5 +1,5 @@
 // import createHttpError from 'http-errors';
-import { getListOfTopBonusesByStore, getPlans,  } from '../services/plans.js';
+import { getListOfTopBonusesByStore, getPlans } from '../services/plans.js';
 
 export const getPlansController = async (req, res, next) => {
   try {
@@ -20,30 +20,28 @@ export const getPlansController = async (req, res, next) => {
 
 export const getListOfTopBonusesByStoreController = async (req, res, next) => {
   const { storeId } = req.params;
-  const { userType } = req.query;
 
-    try {
+  try {
+    const bonuses = await getListOfTopBonusesByStore(storeId);
 
-        const bonuses = await getListOfTopBonusesByStore(storeId, userType);
-
-        if (!bonuses) {
-            res.status(404).json({
-                status: 404,
-                message: 'Bonuses not found for this store.',
-                data: null,
-            });
-            return;
-        }
-
-        res.status(200).json({
-            status: 200,
-            message: 'Successfully retrieved bonuses!',
-            data: {
-                bonuses,
-            },
-        });
-    } catch (error) {
-        console.error('Error in getListOfTopBonusesByStoreController:', error);
-        next(error);
+    if (!bonuses) {
+      res.status(404).json({
+        status: 404,
+        message: 'Bonuses not found for this store.',
+        data: null,
+      });
+      return;
     }
+
+    res.status(200).json({
+      status: 200,
+      message: 'Successfully retrieved bonuses!',
+      data: {
+        bonuses,
+      },
+    });
+  } catch (error) {
+    console.error('Error in getListOfTopBonusesByStoreController:', error);
+    next(error);
+  }
 };
