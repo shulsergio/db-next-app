@@ -7,14 +7,16 @@ export const getPlans = async (query = {}) => {
 
 export const getListOfTopBonusesByStore = async (storeId) => {
     try {
-        console.log(`[Service Debug] Attempting to find storeId: '${storeId}' in field 'bonusData.storeId'`);
+        console.log(`[Service Debug] Attempting to find storeId: '${storeId}'`);
         
-        const result = await topBonusesCollection.findOne({storeId });
-
+        const allDocuments = await topBonusesCollection.find({});
+        console.log('[Service Debug] All documents in the collection:', allDocuments);
+        
+        const result = await topBonusesCollection.findOne({ storeId });
         console.log('[Service Debug] Mongoose query result:', result);
 
         if (!result) {
-            console.warn('[Service Debug] No document found for the given storeId.');
+            console.warn('[Service Debug] No document found for the given storeId. Please check the `allDocuments` log to verify if the storeId exists and is spelled correctly.');
         }
 
         return result;
@@ -23,5 +25,7 @@ export const getListOfTopBonusesByStore = async (storeId) => {
         throw error;
     }
 };
+
+
 
 // .sort({ bonus: -1 }).limit(10);
