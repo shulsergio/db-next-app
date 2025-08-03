@@ -20,4 +20,4 @@ const TopBonusesSchema = new Schema({
         storeId: { type: String, required: true }
 });
 
-export const topBonusesCollection = model('topBonusesDatas', TopBonusesSchema);
+export const topBonusesCollection = model('topbonusdatas', TopBonusesSchema);
