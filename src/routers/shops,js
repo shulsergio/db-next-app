@@ -5,5 +5,5 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { Router } from 'express';
 const plansRouter = Router();
 
-plansRouter.get('/', authenticate, ctrlWrapper(getShopsController));
+// plansRouter.get('/', authenticate, ctrlWrapper(getShopsController));
 export default plansRouter;
