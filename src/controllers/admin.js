@@ -1,10 +1,13 @@
 import createHttpError from 'http-errors';
-import { getAllUsers } from '../services/admin.js';
-import { getPlans } from '../services/plans.js';
+import { getAllPlans, getAllUsers } from '../services/admin.js';
+// import { getPlans } from '../services/plans.js';
 
-export const getAllPlansController = async (req, res) => {
+export const getAllPlansController = async (req, res, next) => {
   try {
-    const plans = await getPlans();
+    if (!req.user || req.user.role !== 'admin') {
+      return next(createHttpError(403, 'Only for admin.'));
+    }
+    const plans = await getAllPlans();
     res.status(200).json(plans);
   } catch (error) {
     console.error('Error fetching plans:', error);
