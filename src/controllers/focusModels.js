@@ -1,4 +1,4 @@
-import { getFocusModels } from '../services/focusModels';
+import { getFocusModels } from '../services/focusModels.js';
 
 export const getFocusModelsController = async (req, res, next) => {
   try {
