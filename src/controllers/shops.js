@@ -1,4 +1,4 @@
-import { getShopById } from '../services/shops';
+import { getShopById } from '../services/shops.js';
 
 export const getShopByIdController = async (req, res, next) => {
   const { storeId } = req.params;
