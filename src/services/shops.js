@@ -4,6 +4,6 @@ export const getAllShops = async (query = {}) => {
   return await ShopsCollection.find(query);
 };
 
-export const getShopById = async (storeId = {}) => {
+export const getShopById = async ({ storeId }) => {
   return await ShopsCollection.findOne({ storeId });
 };
