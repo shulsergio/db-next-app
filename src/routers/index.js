@@ -5,12 +5,13 @@ import adminRouter from './admin.js';
 import ihsRouter from './ihs.js';
 import matrixRouter from './matrix.js';
 import focusModelsRouter from './focusModels.js';
+import shopsRouter from './shops.js';
 
 const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
 indexRouter.use('/auth', authRouter);
 indexRouter.use('/users', authRouter);
-indexRouter.use('/shops', authRouter);
+indexRouter.use('/shops', shopsRouter);
 indexRouter.use('/plans', plansRouter);
 indexRouter.use('/admin', adminRouter);
 indexRouter.use('/ihsdatas', ihsRouter);

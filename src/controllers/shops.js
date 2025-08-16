@@ -1,18 +1,20 @@
-import { getShops } from '../services/shops';
+import { getShopById } from '../services/shops';
 
-export const getShopsController = async (req, res, next) => {
+export const getShopByIdController = async (req, res, next) => {
+  const { storeId } = req.params;
+
   try {
-    const plans = await getShops({ userId: req.user._id });
+    const shops = await getShopById({ storeId: storeId });
 
     res.status(200).json({
       status: 200,
-      message: 'Successfully retrieved plans!',
+      message: 'Successfully retrieved shops!',
       data: {
-        plans,
+        shops,
       },
     });
   } catch (error) {
-    console.error('Error in getPlansController:', error);
+    console.error('Error in getAllShopsController:', error);
     next(error);
   }
 };

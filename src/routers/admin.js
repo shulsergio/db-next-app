@@ -7,9 +7,10 @@ import {
   getAllPlansController,
   getAllUsersController,
 } from '../controllers/admin.js';
+import { getShopByIdController } from '../controllers/shops.js';
 
 adminRouter.get('/plans', authenticate, ctrlWrapper(getAllPlansController));
 
 adminRouter.get('/promoters', authenticate, ctrlWrapper(getAllUsersController));
-// adminRouter.get('/users', authenticate, ctrlWrapper(getAllUsersController));
+adminRouter.get('/shops', authenticate, ctrlWrapper(getShopByIdController));
 export default adminRouter;
