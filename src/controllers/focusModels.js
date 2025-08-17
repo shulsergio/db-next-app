@@ -10,7 +10,7 @@ export const getFocusModelsController = async (req, res, next) => {
         message: 'Bad Request dep.',
       });
     }
-    const data = await getFocusModels({ _id: type });
+    const data = await getFocusModels({ type: type });
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved dep!',
