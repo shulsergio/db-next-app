@@ -2,7 +2,7 @@
 
 import { focusModelsCollection } from '../db/models/focusModels.js';
 
-export const getFocusModels = async ({ type }) => {
-  // console.log('***** CONSOLE getIhs - storeId:', storeId);
-  return await focusModelsCollection.findOne({ type });
+export const getFocusModels = async (type) => {
+  console.log('**???*** CONSOLE getFocusModels - type:', type);
+  return await focusModelsCollection.find({ 'data.type': type }).toArray();
 };
