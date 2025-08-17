@@ -18,4 +18,4 @@ const focusModelsSchema = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-export const focusModelsCollection = model('focusModels', focusModelsSchema);
+export const focusModelsCollection = model('topfocusdatas', focusModelsSchema);
