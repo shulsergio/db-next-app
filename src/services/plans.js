@@ -7,7 +7,14 @@ export const getPlans = async (query = {}) => {
 
 export const getListOfTopBonusesByStore = async (storeId) => {
   try {
-    const result = await topBonusesCollection.findOne({ storeId: storeId });
+    const cleanedStoreId = storeId.trim();
+    console.log(
+      '[Service] getListOfTopBonusesByStore: cleanedStoreId:',
+      cleanedStoreId,
+    );
+    const result = await topBonusesCollection.findOne({
+      storeId: cleanedStoreId,
+    });
 
     console.error('[Service] result:', result);
     return result;
