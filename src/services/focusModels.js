@@ -11,5 +11,5 @@ export const getFocusModels = async (type) => {
     .find({ type })
     .skip(skipModels)
     .limit(limit)
-    .toArray();
+    .exec();
 };
