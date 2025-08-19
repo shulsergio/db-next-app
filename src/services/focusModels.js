@@ -4,5 +4,11 @@ import { focusModelsCollection } from '../db/models/focusModels.js';
 
 export const getFocusModels = async (type) => {
   console.log('**???*** CONSOLE getFocusModels - type:', type);
-  return await focusModelsCollection.find({ type });
+  const limit = 10;
+  const page = 1;
+  const skipModels = (page - 1) * limit;
+  return await focusModelsCollection
+    .find({ type })
+    .skip(skipModels)
+    .limit(limit);
 };
