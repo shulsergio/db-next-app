@@ -2,11 +2,11 @@
 
 import { focusModelsCollection } from '../db/models/focusModels.js';
 
-export const getFocusModels = async (type, limit, page) => {
+export const getFocusModels = async (type, limit, curPage) => {
   try {
-    const skipModels = (page - 1) * limit;
+    const skipModels = (curPage - 1) * limit;
     console.log('**???*** CONSOLE getFocusModels - limit:', limit);
-    console.log('**???*** CONSOLE getFocusModels - page:', page);
+    console.log('**???*** CONSOLE getFocusModels - page:', curPage);
     console.log('**???*** CONSOLE getFocusModels - skipModels:', skipModels);
 
     const totalCount = await focusModelsCollection.countDocuments({ type });
