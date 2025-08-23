@@ -16,7 +16,9 @@ export const getFocusModelsController = async (req, res, next) => {
 
     const page = parseInt(curPage, 10) || 1;
     const size = parseInt(limit, 10) || 20;
-
+    console.log('!!!getFocusModelsController - type:', type);
+    console.log('!!!getFocusModelsController - page:', page);
+    console.log('!!!getFocusModelsController - size:', size);
     const { data, totalCount } = await getFocusModels(type, size, page);
     res.status(200).json({
       status: 200,
