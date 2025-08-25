@@ -17,7 +17,7 @@ export const getFocusModels = async (type, limit, curPage, selectedPrd) => {
     }
     const totalCount = await focusModelsCollection.countDocuments(filter);
     const data = await focusModelsCollection
-      .find({ type, prd: selectedPrd })
+      .find(filter)
       .skip(skipModels)
       .limit(limit)
       .exec();
