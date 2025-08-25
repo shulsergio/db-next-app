@@ -4,10 +4,6 @@ export const getFocusModelsController = async (req, res, next) => {
   try {
     const { type } = req.params;
     const { page, limit, selectedPrd } = req.query;
-    console.log('!!!getFocusModelsController - type:', type);
-    console.log('!!!getFocusModelsController - page:', page);
-    console.log('!!!getFocusModelsController - limit:', limit);
-    console.log('!!!getFocusModelsController - selectedPrd:', selectedPrd);
     if (!type) {
       return res.status(400).json({
         status: 400,
@@ -18,6 +14,7 @@ export const getFocusModelsController = async (req, res, next) => {
     const curPage = parseInt(page, 10) || 1;
     const size = parseInt(limit, 10) || 20;
     console.log('!!!getFocusModelsController - type:', type);
+    console.log('!!!getFocusModelsController - editType:', editType);
     console.log('!!!getFocusModelsController - page:', curPage);
     console.log('!!!getFocusModelsController - size:', size);
     const { data, totalCount } = await getFocusModels(
