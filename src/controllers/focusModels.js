@@ -3,10 +3,11 @@ import { getFocusModels } from '../services/focusModels.js';
 export const getFocusModelsController = async (req, res, next) => {
   try {
     const { type } = req.params;
-    const { page, limit } = req.query;
+    const { page, limit, selectedPrd } = req.query;
     console.log('!!!getFocusModelsController - type:', type);
     console.log('!!!getFocusModelsController - page:', page);
     console.log('!!!getFocusModelsController - limit:', limit);
+    console.log('!!!getFocusModelsController - selectedPrd:', selectedPrd);
     if (!type) {
       return res.status(400).json({
         status: 400,
@@ -19,7 +20,12 @@ export const getFocusModelsController = async (req, res, next) => {
     console.log('!!!getFocusModelsController - type:', type);
     console.log('!!!getFocusModelsController - page:', curPage);
     console.log('!!!getFocusModelsController - size:', size);
-    const { data, totalCount } = await getFocusModels(type, size, curPage);
+    const { data, totalCount } = await getFocusModels(
+      type,
+      size,
+      curPage,
+      selectedPrd,
+    );
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved type!',
