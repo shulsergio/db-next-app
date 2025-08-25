@@ -14,14 +14,14 @@ export const getFocusModelsController = async (req, res, next) => {
         message: 'Bad Request dep.',
       });
     }
-
+    const editType = type === 'AV' ? 'AV' : 'DA';
     const curPage = parseInt(page, 10) || 1;
     const size = parseInt(limit, 10) || 20;
     console.log('!!!getFocusModelsController - type:', type);
     console.log('!!!getFocusModelsController - page:', curPage);
     console.log('!!!getFocusModelsController - size:', size);
     const { data, totalCount } = await getFocusModels(
-      type,
+      editType,
       size,
       curPage,
       selectedPrd,

@@ -2,7 +2,7 @@
 
 import { focusModelsCollection } from '../db/models/focusModels.js';
 
-export const getFocusModels = async (type, limit, curPage, selectedPrd) => {
+export const getFocusModels = async (editType, limit, curPage, selectedPrd) => {
   try {
     const skipModels = (curPage - 1) * limit;
     console.log('**???*** CONSOLE getFocusModels - limit:', limit);
@@ -10,7 +10,7 @@ export const getFocusModels = async (type, limit, curPage, selectedPrd) => {
     console.log('**???*** CONSOLE getFocusModels - skipModels:', skipModels);
     console.log('**???*** CONSOLE getFocusModels - selectedPrd:', selectedPrd);
 
-    const filter = { type };
+    const filter = { editType };
 
     if (selectedPrd && selectedPrd !== 'all') {
       filter.prd = selectedPrd;
