@@ -6,6 +6,7 @@ import ihsRouter from './ihs.js';
 import matrixRouter from './matrix.js';
 import focusModelsRouter from './focusModels.js';
 import shopsRouter from './shops.js';
+import motivationRouter from './motivation.js';
 
 const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
@@ -17,4 +18,5 @@ indexRouter.use('/admin', adminRouter);
 indexRouter.use('/ihsdatas', ihsRouter);
 indexRouter.use('/matrixDatas', matrixRouter);
 indexRouter.use('/focusModels', focusModelsRouter);
+indexRouter.use('/motivation', motivationRouter);
 export default indexRouter;
