@@ -1,4 +1,4 @@
-import { AVdavMotivationCollection } from '../db/models/davMotivation';
+import { AVdavMotivationCollection } from '../db/models/davMotivation.js';
 
 export const getDavMotivationController = async (req, res, next) => {
   try {
