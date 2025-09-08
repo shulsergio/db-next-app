@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-const davMotivationSchema = new Schema({
+const AVdavMotivationSchema = new Schema({
   cluster: { type: Number, required: true },
   storeId: { type: String, required: true },
   mcsId: { type: String, required: true },
@@ -10,7 +10,7 @@ const davMotivationSchema = new Schema({
   rank: { type: Number, required: true },
 });
 
-export const davMotivationCollection = model(
+export const AVdavMotivationCollection = model(
   'davmotivation',
-  davMotivationSchema,
+  AVdavMotivationSchema,
 );

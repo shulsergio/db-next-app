@@ -1,8 +1,8 @@
-import { davMotivationCollection } from '../db/models/davMotivation';
+import { AVdavMotivationCollection } from '../db/models/davMotivation';
 
 export const getDavMotivationController = async (req, res, next) => {
   try {
-    const davMotivations = await davMotivationCollection.find({});
+    const davMotivations = await AVdavMotivationCollection.find({});
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved DAV motivations!',
