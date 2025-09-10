@@ -5,7 +5,7 @@ import { Router } from 'express';
 const motivationRouter = Router();
 
 motivationRouter.get(
-  '/',
+  '/davMotivation',
   authenticate,
   ctrlWrapper(getDavMotivationController),
 );
