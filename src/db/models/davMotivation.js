@@ -11,6 +11,6 @@ const AVdavMotivationSchema = new Schema({
 });
 
 export const AVdavMotivationCollection = model(
-  'davmotivation',
+  'davmotivations',
   AVdavMotivationSchema,
 );
