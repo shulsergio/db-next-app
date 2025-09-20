@@ -12,10 +12,10 @@ export const getFocusModels = async (editType, limit, curPage, selectedPrd) => {
     console.log('**???*** CONSOLE getFocusModels - skipModels:', skipModels);
     console.log('**???*** CONSOLE getFocusModels - selectedPrd:', selectedPrd);
 
+    const prdToFilter = selectedPrd || 'all';
     const filter = { type };
-
-    if (selectedPrd && selectedPrd !== 'all') {
-      filter.prd = selectedPrd;
+    if (prdToFilter !== 'all') {
+      filter.prd = prdToFilter;
     }
     const totalCount = await focusModelsCollection.countDocuments(filter);
     const data = await focusModelsCollection
