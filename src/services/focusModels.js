@@ -17,12 +17,17 @@ export const getFocusModels = async (editType, limit, curPage, selectedPrd) => {
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }
+    console.log('**???*** CONSOLE getFocusModels - prdToFilter:', prdToFilter);
+    console.log('**???*** CONSOLE getFocusModels - filter:', filter);
+
     const totalCount = await focusModelsCollection.countDocuments(filter);
     const data = await focusModelsCollection
       .find(filter)
       .skip(skipModels)
       .limit(limit)
       .exec();
+    console.log('**???*** CONSOLE getFocusModels - totalCount:', totalCount);
+    console.log('**???*** CONSOLE getFocusModels - data:', data);
     return { data, totalCount };
   } catch (error) {
     console.log(error);
