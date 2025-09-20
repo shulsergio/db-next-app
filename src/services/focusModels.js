@@ -14,6 +14,8 @@ export const getFocusModels = async (editType, limit, curPage, selectedPrd) => {
 
     const prdToFilter = selectedPrd || 'all';
     const filter = { type };
+    filter.year = 2025;
+    filter.month = 9;
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }

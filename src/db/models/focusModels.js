@@ -1,6 +1,8 @@
 import { model, Schema } from 'mongoose';
 
 const focusModelsDataSchema = new Schema({
+  year: { type: Number, required: true },
+  month: { type: Number, required: true },
   sku: { type: String, required: true },
   prd: { type: String, required: true },
   type: { type: String, required: true },
