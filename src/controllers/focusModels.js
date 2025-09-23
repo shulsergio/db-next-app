@@ -3,7 +3,7 @@ import { getFocusModels } from '../services/focusModels.js';
 export const getFocusModelsController = async (req, res, next) => {
   try {
     const { type } = req.params;
-    const { page, limit, selectedPrd } = req.query;
+    const { page, limit, selectedPrd, isFocusOnly } = req.query;
     if (!type) {
       return res.status(400).json({
         status: 400,
@@ -13,6 +13,7 @@ export const getFocusModelsController = async (req, res, next) => {
     const editType = type === 'AV' ? 'AV' : 'DA';
     const curPage = parseInt(page, 10) || 1;
     const size = parseInt(limit, 10) || 20;
+    console.log('!!!getFocusModelsController - isFocusOnly:', isFocusOnly);
     console.log('!!!getFocusModelsController - type:', type);
     console.log('!!!getFocusModelsController - editType:', editType);
     console.log('!!!getFocusModelsController - page:', curPage);
@@ -22,6 +23,7 @@ export const getFocusModelsController = async (req, res, next) => {
       size,
       curPage,
       selectedPrd,
+      isFocusOnly,
     );
     res.status(200).json({
       status: 200,

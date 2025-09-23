@@ -2,7 +2,13 @@
 
 import { focusModelsCollection } from '../db/models/focusModels.js';
 
-export const getFocusModels = async (editType, limit, curPage, selectedPrd) => {
+export const getFocusModels = async (
+  editType,
+  limit,
+  curPage,
+  selectedPrd,
+  isFocusOnly,
+) => {
   try {
     const skipModels = (curPage - 1) * limit;
     const type = editType;
@@ -16,6 +22,7 @@ export const getFocusModels = async (editType, limit, curPage, selectedPrd) => {
     const filter = { type };
     filter.year = 2025;
     filter.month = 9;
+    isFocusOnly === 'true' ? (filter.focus = { $gt: 1 }) : null;
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }
