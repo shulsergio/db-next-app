@@ -13,7 +13,12 @@ export const getFocusModelsController = async (req, res, next) => {
     const editType = type === 'AV' ? 'AV' : 'DA';
     const curPage = parseInt(page, 10) || 1;
     const size = parseInt(limit, 10) || 20;
-    console.log('!!!getFocusModelsController - isFocusOnly:', isFocusOnly);
+    console.log(
+      '!!!getFocusModelsController - isFocusOnly value:',
+      isFocusOnly,
+      'type:',
+      typeof isFocusOnly,
+    );
     console.log('!!!getFocusModelsController - type:', type);
     console.log('!!!getFocusModelsController - editType:', editType);
     console.log('!!!getFocusModelsController - page:', curPage);
