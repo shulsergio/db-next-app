@@ -22,7 +22,7 @@ export const getFocusModels = async (
     const filter = { type };
     filter.year = 2025;
     filter.month = 9;
-    isFocusOnly === 'true' ? (filter.focus = { $gt: 1 }) : null;
+    isFocusOnly === 1 ? (filter.focus = { $gt: 1 }) : null;
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }
