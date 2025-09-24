@@ -28,7 +28,7 @@ export const getFocusModelsController = async (req, res, next) => {
       size,
       curPage,
       selectedPrd,
-      isFocusOnly === true ? 1 : 0,
+      isFocusOnly === 'true' ? 1 : 0,
     );
     res.status(200).json({
       status: 200,
