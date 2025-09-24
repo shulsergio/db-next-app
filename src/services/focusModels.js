@@ -28,7 +28,7 @@ export const getFocusModels = async (
     const filter = { type };
     filter.year = 2025;
     filter.month = 9;
-    Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 1 }) : null;
+    Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
     console.log(
       '**???*** CONSOLE getFocusModels - filter.focus:',
       filter.focus,
