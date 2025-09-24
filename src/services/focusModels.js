@@ -10,6 +10,12 @@ export const getFocusModels = async (
   isFocusOnly,
 ) => {
   try {
+    console.log(
+      '**???*** CONSOLE getFocusModels - isFocusOnly value:',
+      isFocusOnly,
+      'type:',
+      typeof isFocusOnly,
+    );
     const skipModels = (curPage - 1) * limit;
     const type = editType;
     console.log('**???*** CONSOLE getFocusModels - editType:', type);
@@ -23,6 +29,10 @@ export const getFocusModels = async (
     filter.year = 2025;
     filter.month = 9;
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 1 }) : null;
+    console.log(
+      '**???*** CONSOLE getFocusModels - filter.focus:',
+      filter.focus,
+    );
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }
