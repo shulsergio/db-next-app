@@ -13,9 +13,7 @@ const focusModelsDataSchema = new Schema({
 
 const focusModelsSchema = new Schema(
   {
-    // dep: { type: String, required: true },
     data: [focusModelsDataSchema],
-    //682f8e184a19781cae4ce9e8 userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   { timestamps: true, versionKey: false },
 );

@@ -30,7 +30,7 @@ export const getFocusModels = async (
     filter.year = 2025;
     filter.month = 9;
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
-    Number(isFocusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
+    Number(isBonusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
     console.log(
       '**???*** CONSOLE getFocusModels - filter.focus:',
       filter.focus,
@@ -47,8 +47,6 @@ export const getFocusModels = async (
       .skip(skipModels)
       .limit(limit)
       .exec();
-    console.log('**???*** CONSOLE getFocusModels - totalCount:', totalCount);
-    console.log('**???*** CONSOLE getFocusModels - data:', data);
     return { data, totalCount };
   } catch (error) {
     console.log(error);
