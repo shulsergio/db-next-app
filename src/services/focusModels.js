@@ -8,6 +8,7 @@ export const getFocusModels = async (
   curPage,
   selectedPrd,
   isFocusOnly,
+  isBonusOnly,
 ) => {
   try {
     console.log(
@@ -29,6 +30,7 @@ export const getFocusModels = async (
     filter.year = 2025;
     filter.month = 9;
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
+    Number(isFocusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
     console.log(
       '**???*** CONSOLE getFocusModels - filter.focus:',
       filter.focus,

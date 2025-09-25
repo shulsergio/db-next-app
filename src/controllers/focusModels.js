@@ -3,7 +3,7 @@ import { getFocusModels } from '../services/focusModels.js';
 export const getFocusModelsController = async (req, res, next) => {
   try {
     const { type } = req.params;
-    const { page, limit, selectedPrd, isFocusOnly } = req.query;
+    const { page, limit, selectedPrd, isFocusOnly, isBonusOnly } = req.query;
     if (!type) {
       return res.status(400).json({
         status: 400,
@@ -29,6 +29,7 @@ export const getFocusModelsController = async (req, res, next) => {
       curPage,
       selectedPrd,
       isFocusOnly === 'true' ? 1 : 0,
+      isBonusOnly === 'true' ? 1 : 0,
     );
     res.status(200).json({
       status: 200,
