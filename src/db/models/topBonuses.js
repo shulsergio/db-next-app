@@ -33,4 +33,4 @@ const CategorySchema = new Schema({
   week: { type: String, required: true },
 });
 
-export const topBonusesCollection = model('bonusRowdatas', CategorySchema);
+export const topBonusesCollection = model('bonusrowdatas', CategorySchema);
