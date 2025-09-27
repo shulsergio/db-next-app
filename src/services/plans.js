@@ -11,19 +11,17 @@ export const getListOfTopBonusesByStore = async (storeId, type, week) => {
   console.log('XXXgetListOfTopBonusesByStoreService - week:', week);
 
   try {
-    const cleanedStoreId = storeId.trim();
-    const filter = {
-      storeId: cleanedStoreId,
-    };
+    // const cleanedStoreId = storeId.trim();
+    const filter = { storeId };
 
-    if (type === 'DA') {
-      filter.prd = { $in: ['SDA', 'MDA'] };
-    } else if (type === 'AV' || type === 'SDA' || type === 'MDA') {
-      filter.prd = type;
-    }
-    if (week !== 'all') {
-      filter.week = week;
-    }
+    // if (type === 'DA') {
+    //   filter.prd = { $in: ['SDA', 'MDA'] };
+    // } else if (type === 'AV' || type === 'SDA' || type === 'MDA') {
+    //   filter.prd = type;
+    // }
+    // if (week !== 'all') {
+    //   filter.week = week;
+    // }
     console.log('XXXgetListOfTopBonusesByStoreService - filter:', filter);
 
     const result = await topBonusesCollection.find(filter).exec();
