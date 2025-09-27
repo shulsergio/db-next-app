@@ -5,16 +5,23 @@ export const getPlans = async (query = {}) => {
   return await PlansCollection.find(query);
 };
 
-export const getListOfTopBonusesByStore = async (storeId) => {
+export const getListOfTopBonusesByStore = async (storeId, type, week) => {
   try {
     const cleanedStoreId = storeId.trim();
-    console.log(
-      '[Service] getListOfTopBonusesByStore: cleanedStoreId:',
-      cleanedStoreId,
-    );
-    const result = await topBonusesCollection.findOne({
+    const filter = {
       storeId: cleanedStoreId,
-    });
+    };
+
+    if (type === 'DA') {
+      filter.type = { $in: ['SDA', 'MDA'] };
+    } else if (type === 'AV' || type === 'SDA' || type === 'MDA') {
+      filter.type = type;
+    }
+    if (week !== 'all') {
+      filter.week = week;
+    }
+
+    const result = await topBonusesCollection.findOne(filter);
 
     console.error('[Service] result:', result);
     return result;

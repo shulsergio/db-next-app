@@ -20,9 +20,10 @@ export const getPlansController = async (req, res, next) => {
 
 export const getListOfTopBonusesByStoreController = async (req, res, next) => {
   const { storeId } = req.params;
+  const { type, week } = req.query;
 
   try {
-    const bonuses = await getListOfTopBonusesByStore(storeId);
+    const bonuses = await getListOfTopBonusesByStore(storeId, type, week);
 
     if (!bonuses) {
       res.status(404).json({

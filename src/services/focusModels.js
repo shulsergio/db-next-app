@@ -19,16 +19,11 @@ export const getFocusModels = async (
     );
     const skipModels = (curPage - 1) * limit;
     const type = editType;
-    console.log('**???*** CONSOLE getFocusModels - editType:', type);
-    console.log('**???*** CONSOLE getFocusModels - limit:', limit);
-    console.log('**???*** CONSOLE getFocusModels - page:', curPage);
-    console.log('**???*** CONSOLE getFocusModels - skipModels:', skipModels);
-    console.log('**???*** CONSOLE getFocusModels - selectedPrd:', selectedPrd);
-
     const prdToFilter = selectedPrd || 'all';
     const filter = { type };
     filter.year = 2025;
     filter.month = 9;
+
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
     Number(isBonusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
     console.log(
