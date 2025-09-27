@@ -26,9 +26,9 @@ export const getListOfTopBonusesByStore = async (storeId, type, week) => {
     }
     console.log('XXXgetListOfTopBonusesByStoreService - filter:', filter);
 
-    const result = await topBonusesCollection.findOne(filter);
+    const result = await topBonusesCollection.find(filter).exec();
 
-    console.error('[Service] result:', result);
+    console.log('[Service] result:', result);
     return result;
   } catch (error) {
     console.error('[Service]:', error);
