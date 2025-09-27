@@ -22,18 +22,20 @@ import { model, Schema } from 'mongoose';
 
 // export const topBonusesCollection = model('topbonusdatas', TopBonusesSchema);
 
+const CategoryData = new Schema({
+  storeId: { type: String, required: true },
+  account: { type: String, required: true },
+  item: { type: String, required: true },
+  soqty: { type: Number, required: true },
+  bonus: { type: Number, required: true },
+  prd: { type: String, required: true },
+  day: { type: String, required: true },
+  week: { type: String, required: true },
+});
 const CategorySchema = new Schema(
   {
-    storeId: { type: String, required: true },
-    account: { type: String, required: true },
-    item: { type: String, required: true },
-    soqty: { type: Number, required: true },
-    bonus: { type: Number, required: true },
-    prd: { type: String, required: true },
-    day: { type: String, required: true },
-    week: { type: String, required: true },
+    data: [CategoryData],
   },
-  { _id: false },
+  { timestamps: true, versionKey: false },
 );
-
 export const topBonusesCollection = model('bonusRowdatas', CategorySchema);
