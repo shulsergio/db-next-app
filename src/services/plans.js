@@ -6,6 +6,10 @@ export const getPlans = async (query = {}) => {
 };
 
 export const getListOfTopBonusesByStore = async (storeId, type, week) => {
+  console.log('XXXgetListOfTopBonusesByStoreService - storeId:', storeId);
+  console.log('XXXgetListOfTopBonusesByStoreService - type:', type);
+  console.log('XXXgetListOfTopBonusesByStoreService - week:', week);
+
   try {
     const cleanedStoreId = storeId.trim();
     const filter = {
@@ -20,6 +24,7 @@ export const getListOfTopBonusesByStore = async (storeId, type, week) => {
     if (week !== 'all') {
       filter.week = week;
     }
+    console.log('XXXgetListOfTopBonusesByStoreService - filter:', filter);
 
     const result = await topBonusesCollection.findOne(filter);
 
