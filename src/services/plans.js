@@ -17,9 +17,9 @@ export const getListOfTopBonusesByStore = async (storeId, type, week) => {
     };
 
     if (type === 'DA') {
-      filter.type = { $in: ['SDA', 'MDA'] };
+      filter.prd = { $in: ['SDA', 'MDA'] };
     } else if (type === 'AV' || type === 'SDA' || type === 'MDA') {
-      filter.type = type;
+      filter.prd = type;
     }
     if (week !== 'all') {
       filter.week = week;
