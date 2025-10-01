@@ -3,7 +3,9 @@ import { AVdavMotivationCollection } from '../db/models/davMotivation.js';
 export const getDavMotivationController = async (req, res, next) => {
   const { cluster } = req.query;
   try {
-    const davMotivations = await AVdavMotivationCollection.find({ cluster });
+    const davMotivations = await AVdavMotivationCollection.find({ cluster })
+      .sort({ rank: 1 })
+      .lean();
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved DAV motivations!',

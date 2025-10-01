@@ -1,6 +1,5 @@
-import { MatrixCollection } from "../db/models/matrixdata.js";
-
+import { MatrixCollection } from '../db/models/matrixdata.js';
 
 export const getMatrix = async ({ storeId }) => {
-    return await MatrixCollection.find({storeId});
+  return await MatrixCollection.find({ storeId }).lean();
 };

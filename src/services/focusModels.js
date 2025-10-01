@@ -1,5 +1,3 @@
-// import { PlansCollection } from "../db/models/plans.js";
-
 import { focusModelsCollection } from '../db/models/focusModels.js';
 
 export const getFocusModels = async (
@@ -11,12 +9,6 @@ export const getFocusModels = async (
   isBonusOnly,
 ) => {
   try {
-    console.log(
-      '**???*** CONSOLE getFocusModels - isFocusOnly value:',
-      isFocusOnly,
-      'type:',
-      typeof isFocusOnly,
-    );
     const skipModels = (curPage - 1) * limit;
     const type = editType;
     const prdToFilter = selectedPrd || 'all';
@@ -26,22 +18,16 @@ export const getFocusModels = async (
 
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
     Number(isBonusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
-    console.log(
-      '**???*** CONSOLE getFocusModels - filter.focus:',
-      filter.focus,
-    );
+
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }
-    console.log('**???*** CONSOLE getFocusModels - prdToFilter:', prdToFilter);
-    console.log('**???*** CONSOLE getFocusModels - filter:', filter);
-
     const totalCount = await focusModelsCollection.countDocuments(filter);
     const data = await focusModelsCollection
       .find(filter)
       .skip(skipModels)
       .limit(limit)
-      .exec();
+      .lean();
     return { data, totalCount };
   } catch (error) {
     console.log(error);

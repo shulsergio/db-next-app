@@ -2,8 +2,8 @@ import { model, Schema } from 'mongoose';
 
 const AVdavMotivationSchema = new Schema({
   cluster: { type: Number, required: true },
+  account: { type: String, required: true },
   region: { type: String, required: true },
-  storeId: { type: String, required: true },
   mcsId: { type: String, required: true },
   soar: { type: String, required: true },
   soqty: { type: String, required: true },
