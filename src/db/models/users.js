@@ -23,7 +23,10 @@ const usersSchema = new Schema(
     },
     gender: { type: String, enum: ['man', 'woman'], default: 'man' },
     uniform: { type: String },
+
     shop: { type: String, required: true },
+    dateHiring: { type: Date, default: null },
+    dateDismiss: { type: Date, default: null },
     lastVisit: { type: Date, default: Date.now },
     // userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
