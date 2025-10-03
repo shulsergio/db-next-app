@@ -5,6 +5,7 @@ export const getFocusModels = async (
   limit,
   curPage,
   selectedPrd,
+  selectedMonth,
   isFocusOnly,
   isBonusOnly,
 ) => {
@@ -14,7 +15,7 @@ export const getFocusModels = async (
     const prdToFilter = selectedPrd || 'all';
     const filter = { type };
     // filter.year = 2025;
-    // filter.month = 9;
+    filter.month = selectedMonth;
 
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
     Number(isBonusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
@@ -22,6 +23,7 @@ export const getFocusModels = async (
     if (prdToFilter !== 'all') {
       filter.prd = prdToFilter;
     }
+
     const totalCount = await focusModelsCollection.countDocuments(filter);
     const data = await focusModelsCollection
       .find(filter)
