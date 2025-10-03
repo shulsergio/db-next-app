@@ -13,8 +13,8 @@ export const getFocusModels = async (
     const type = editType;
     const prdToFilter = selectedPrd || 'all';
     const filter = { type };
-    filter.year = 2025;
-    filter.month = 9;
+    // filter.year = 2025;
+    // filter.month = 9;
 
     Number(isFocusOnly) === 1 ? (filter.focus = { $gt: 0 }) : null;
     Number(isBonusOnly) === 1 ? (filter.topFocus = { $gt: 0 }) : null;
