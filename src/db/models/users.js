@@ -1,4 +1,6 @@
 import { model, Schema } from 'mongoose';
+export const publicFields =
+  'name mcsId email role userType region gender uniform shop dateHiring dateDismiss lastVisit createdAt updatedAt';
 
 const usersSchema = new Schema(
   {

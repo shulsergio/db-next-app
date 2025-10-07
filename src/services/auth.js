@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { UsersCollection } from '../db/models/users.js';
+import { publicFields, UsersCollection } from '../db/models/users.js';
 import bcrypt from 'bcrypt';
 import { SessionsCollection } from '../db/models/session.js';
 import { randomBytes } from 'crypto';
@@ -83,16 +83,46 @@ export const refreshUserSession = async (sessionId, refreshToken) => {
   });
 };
 
-
 //----- updateUniform
 export const updateUniform = async (userId, newUniformValue) => {
   const user = await UsersCollection.findByIdAndUpdate(
     userId,
     { uniform: newUniformValue },
-    { new: true }
+    { new: true },
   );
   if (!user) {
     throw new Error('User not found');
   }
   return user;
+};
+
+export const patchPassword = async (user, body) => {
+  const { outDatePassword, newPassword } = body;
+  const userId = user._id || user.id;
+
+  if (!outDatePassword || !newPassword) {
+    throw createHttpError(400, 'Current and new passwords are required.');
+  }
+
+  const passwordCompare = await bcrypt.compare(outDatePassword, user.password);
+
+  if (!passwordCompare) {
+    throw createHttpError(401, 'Invalid current password');
+  }
+
+  if (passwordCompare) {
+    const hashPassword = await bcrypt.hash(newPassword, 10);
+
+    const updatedUser = await UsersCollection.findByIdAndUpdate(
+      userId,
+      { password: hashPassword },
+      { new: true, select: publicFields },
+    );
+
+    if (!updatedUser) {
+      throw createHttpError(404, 'User not found.');
+    }
+
+    return updatedUser;
+  }
 };
