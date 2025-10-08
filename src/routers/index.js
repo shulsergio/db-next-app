@@ -7,11 +7,12 @@ import matrixRouter from './matrix.js';
 import focusModelsRouter from './focusModels.js';
 import shopsRouter from './shops.js';
 import motivationRouter from './motivation.js';
+import usersRouter from './users.js';
 
 const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
 indexRouter.use('/auth', authRouter);
-indexRouter.use('/users', authRouter);
+indexRouter.use('/users', usersRouter);
 indexRouter.use('/shops', shopsRouter);
 indexRouter.use('/plans', plansRouter);
 indexRouter.use('/admin', adminRouter);
