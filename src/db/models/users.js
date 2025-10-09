@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 export const publicFields =
-  'name mcsId email role userType region gender uniform shop dateHiring dateDismiss lastVisit createdAt updatedAt';
+  'name mcsId email role userType region city gender uniform shop DateOfHired DateOfFired lastVisit createdAt updatedAt';
 
 const usersSchema = new Schema(
   {
@@ -23,12 +23,15 @@ const usersSchema = new Schema(
       enum: ['Dnipro', 'Kharkiv', 'Kyiv', 'Lviv', 'Odesa'],
       default: 'Kharkiv',
     },
+    city: { type: String, default: '' },
+    mobile: { type: String, default: '' },
+    INN: { type: String, default: '' },
     gender: { type: String, enum: ['man', 'woman'], default: 'man' },
     uniform: { type: String },
 
     shop: { type: String, required: true },
-    dateHiring: { type: Date, default: null },
-    dateDismiss: { type: Date, default: null },
+    DateOfHired: { type: Date, default: null },
+    DateOfFired: { type: Date, default: null },
     lastVisit: { type: Date, default: Date.now },
     // userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
