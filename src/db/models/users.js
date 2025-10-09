@@ -15,7 +15,7 @@ const usersSchema = new Schema(
     },
     userType: {
       type: String,
-      enum: ['CE', 'AV', 'DA', 'MDA', 'SDA'],
+      enum: ['AV', 'DA', 'MDA', 'SDA'],
       default: 'DA',
     },
     region: {
