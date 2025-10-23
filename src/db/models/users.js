@@ -10,7 +10,7 @@ const usersSchema = new Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ['admin', 'promoter', 'merchendiser', 'trainer', 'user'],
+      enum: ['admin', 'rffm', 'promoter', 'merchendiser', 'trainer', 'user'],
       default: 'promoter',
     },
     userType: {
@@ -21,7 +21,6 @@ const usersSchema = new Schema(
     region: {
       type: String,
       enum: ['Dnipro', 'Kharkiv', 'Kyiv', 'Lviv', 'Odesa'],
-      default: 'Kharkiv',
     },
     city: { type: String, default: '' },
     mobile: { type: String, default: '' },
