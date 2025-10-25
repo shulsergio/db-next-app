@@ -8,8 +8,8 @@ const allowedOrigins = [
   'http://new-next-project-sand.vercel.app',
   'https://sams-project.vercel.app',
   'https://new-next-project-sand.vercel.app',
-  'http://localhost:4000',
   'http://localhost:3000',
+  // 'http://localhost:4000',
 ];
 
 const corsOptions = {
@@ -42,7 +42,7 @@ export const setupServer = () => {
     res.json({ message: 'all is ok' });
   });
   console.log('***** CONSOLE - SERVER - IS OK');
-app.use(router);
+  app.use(router);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
