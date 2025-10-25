@@ -9,7 +9,7 @@ const allowedOrigins = [
   'https://sams-project.vercel.app',
   'https://new-next-project-sand.vercel.app',
   'http://localhost:3000',
-  // 'http://localhost:4000',
+  'http://localhost:4000',
 ];
 
 const corsOptions = {
