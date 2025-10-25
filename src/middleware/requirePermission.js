@@ -1,4 +1,4 @@
-import ACCESS_MAP from '../config/access.js';
+import ACCESS_MAP from '../constants/access.js';
 
 const requirePermission = (requiredPermission) => (req, res, next) => {
   const userRole = req.user.role;
