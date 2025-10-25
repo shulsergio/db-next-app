@@ -8,9 +8,20 @@ import {
   getAllUsersController,
 } from '../controllers/admin.js';
 import { getShopByIdController } from '../controllers/shops.js';
+import requirePermission from '../middleware/requirePermission.js';
 
-adminRouter.get('/plans', authenticate, ctrlWrapper(getAllPlansController));
+adminRouter.get(
+  '/plans',
+  authenticate,
+  requirePermission('canViewUsersPlans'),
+  ctrlWrapper(getAllPlansController),
+);
 
-adminRouter.get('/promoters', authenticate, ctrlWrapper(getAllUsersController));
+adminRouter.get(
+  '/promoters',
+  authenticate,
+  requirePermission('canViewUsersData'),
+  ctrlWrapper(getAllUsersController),
+);
 adminRouter.get('/shops', authenticate, ctrlWrapper(getShopByIdController));
 export default adminRouter;

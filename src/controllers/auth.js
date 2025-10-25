@@ -8,6 +8,7 @@ import {
   refreshUserSession,
   updateUniform,
 } from '../services/auth.js';
+import ACCESS_MAP from '../config/access.js';
 
 export const registerUserController = async (req, res, next) => {
   console.log('registerUserController: Start');
@@ -33,12 +34,13 @@ export const loginUserController = async (req, res) => {
     return res.status(404).json({ message: 'User not found' });
   }
   const session = await loginUser(req.body);
+  const userPermissions = ACCESS_MAP[user.role] || {};
 
-    const updatedUser = await UsersCollection.findByIdAndUpdate(
-      user._id,
-      { lastVisit: new Date() },
-      { new: true }
-    );
+  const updatedUser = await UsersCollection.findByIdAndUpdate(
+    user._id,
+    { lastVisit: new Date() },
+    { new: true },
+  );
 
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
@@ -49,17 +51,15 @@ export const loginUserController = async (req, res) => {
     expires: new Date(Date.now() + REFRESH_TOKEN),
   });
 
-
   res.json({
     status: 200,
     message: 'Successfully logged in an user!',
     data: {
       user: {
-  id: updatedUser._id,  
+        id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
         mcsId: updatedUser.mcsId,
-        role: updatedUser.role,
         userType: updatedUser.userType,
         region: updatedUser.region,
         city: updatedUser.city,
@@ -71,6 +71,8 @@ export const loginUserController = async (req, res) => {
         uniform: updatedUser.uniform,
         shop: updatedUser.shop,
         lastVisit: updatedUser.lastVisit,
+        role: updatedUser.role,
+        permissions: userPermissions,
       },
       accessToken: session.accessToken,
     },
@@ -118,12 +120,18 @@ export const refreshUserSessionController = async (req, res) => {
 export const updateUniformController = async (req, res, next) => {
   try {
     if (!req.user || !req.user._id) {
-      return next(createHttpError(401, 'Unauthorized: User not authenticated.'));
+      return next(
+        createHttpError(401, 'Unauthorized: User not authenticated.'),
+      );
     }
     const userId = req.user._id;
     const { newUniformValue } = req.body;
 
-    if (!newUniformValue || typeof newUniformValue !== 'string' || newUniformValue.trim() === '') {
+    if (
+      !newUniformValue ||
+      typeof newUniformValue !== 'string' ||
+      newUniformValue.trim() === ''
+    ) {
       return next(createHttpError(400, 'Invalid or empty uniform value.'));
     }
     const updatedUser = await updateUniform(userId, newUniformValue.trim());
