@@ -8,7 +8,7 @@ import {
   refreshUserSession,
   updateUniform,
 } from '../services/auth.js';
-import ACCESS_MAP from '../config/access.js';
+import ACCESS_MAP from '../constants/access.js';
 
 export const registerUserController = async (req, res, next) => {
   console.log('registerUserController: Start');
