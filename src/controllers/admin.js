@@ -1,12 +1,12 @@
-import createHttpError from 'http-errors';
+// import createHttpError from 'http-errors';
 import { getAllPlans, getAllUsers } from '../services/admin.js';
 // import { getPlans } from '../services/plans.js';
 
 export const getAllPlansController = async (req, res, next) => {
   try {
-    if (!req.user || req.user.role !== 'admin') {
-      return next(createHttpError(403, 'Only for admin.'));
-    }
+    // if (!req.user || req.user.permissions !== 'admin') {
+    //   return next(createHttpError(403, 'Only for admin.'));
+    // }
     const plans = await getAllPlans();
     res.status(200).json(plans);
   } catch (error) {
@@ -17,9 +17,9 @@ export const getAllPlansController = async (req, res, next) => {
 
 export const getAllUsersController = async (req, res, next) => {
   try {
-    if (!req.user || req.user.role !== 'admin') {
-      return next(createHttpError(403, 'Only for admin.'));
-    }
+    // if (!req.user || req.user.role !== 'admin') {
+    //   return next(createHttpError(403, 'Only for admin.'));
+    // }
     const users = await getAllUsers();
     res.status(200).json(users);
   } catch (error) {

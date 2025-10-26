@@ -20,15 +20,16 @@ const ACCESS_MAP = {
     canAccessAllRegionsData: false,
     canViewUsersData: false,
     canViewUsersPlans: true,
-    canViewUsersFocus: true,
+    canViewUsersFocus: false, ///////
   },
   promoter: {
+    canAccessAdminPanel: false,
     canViewUsers: false,
     canEditUsers: false,
     canDeleteUsers: false,
-    canAccessAdminPanel: false,
     canViewReports: false,
     canAccessPromotersPanel: true,
+    canViewUsersFocus: true,
   },
 };
 
