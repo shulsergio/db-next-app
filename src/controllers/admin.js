@@ -7,6 +7,7 @@ export const getAllPlansController = async (req, res, next) => {
     // if (!req.user || req.user.permissions !== 'admin') {
     //   return next(createHttpError(403, 'Only for admin.'));
     // }
+    console.log('***!!!getAllPlansController req.user:', req.user);
     const plans = await getAllPlans();
     res.status(200).json(plans);
   } catch (error) {
