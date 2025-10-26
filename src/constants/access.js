@@ -11,16 +11,16 @@ const ACCESS_MAP = {
   rmUser: {
     canAccessAdminPanel: true,
     canAccessAllRegionsData: false,
-    canViewUsersData: false,
+    canViewUsersData: true,
     canViewUsersPlans: true,
     canViewUsersFocus: true,
   },
   rffm: {
     canAccessAdminPanel: true,
     canAccessAllRegionsData: false,
-    canViewUsersData: false,
+    canViewUsersData: true,
     canViewUsersPlans: true,
-    canViewUsersFocus: false, ///////
+    canViewUsersFocus: true,
   },
   promoter: {
     canAccessAdminPanel: false,
