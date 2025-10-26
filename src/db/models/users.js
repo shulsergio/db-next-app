@@ -10,12 +10,12 @@ const usersSchema = new Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ['admin', 'rffm', 'promoter', 'merchendiser', 'trainer', 'user'],
+      enum: ['admin', 'rffm', 'rmUser', 'promoter', 'merchendiser', 'trainer', 'guest'],
       default: 'promoter',
     },
     userType: {
       type: String,
-      enum: ['AV', 'DA', 'MDA', 'SDA'],
+      enum: ['AV', 'DA', 'MDA', 'SDA', 'CE'],
       default: 'DA',
     },
     region: {

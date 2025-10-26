@@ -4,14 +4,23 @@ const ACCESS_MAP = {
     canAccessAllRegionsData: true,
     canViewUsersData: true,
     canViewUsersPlans: true,
+    canViewUsersFocus: true,
     // canEditUsers: true,
     // canDeleteUsers: true,
+  },
+  rmUser: {
+    canAccessAdminPanel: true,
+    canAccessAllRegionsData: false,
+    canViewUsersData: false,
+    canViewUsersPlans: true,
+    canViewUsersFocus: true,
   },
   rffm: {
     canAccessAdminPanel: true,
     canAccessAllRegionsData: false,
-    canViewUsersData: true,
+    canViewUsersData: false,
     canViewUsersPlans: true,
+    canViewUsersFocus: true,
   },
   promoter: {
     canViewUsers: false,
@@ -19,6 +28,7 @@ const ACCESS_MAP = {
     canDeleteUsers: false,
     canAccessAdminPanel: false,
     canViewReports: false,
+    canAccessPromotersPanel: true,
   },
 };
 
