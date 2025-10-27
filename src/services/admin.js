@@ -10,6 +10,15 @@ export const getAllUsers = async () => {
   return users;
 };
 
+export const getPromoters = async (userType, region) => {
+  const users = await UsersCollection.find({
+    role: 'promoter',
+    userType: userType,
+    region: region,
+  }).lean();
+  return users;
+};
+
 export const getUserById = async (userId) => {
   const user = await UsersCollection.findById(userId).lean();
   return user;
