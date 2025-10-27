@@ -18,7 +18,7 @@ const ACCESS_MAP = {
   rffm: {
     canAccessAdminPanel: true,
     canAccessAllRegionsData: false,
-    canViewUsersData: true,
+    canViewUsersData: false,
     canViewUsersPlans: true,
     canViewUsersFocus: true,
   },
