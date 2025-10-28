@@ -1,8 +1,10 @@
 const ACCESS_MAP = {
   admin: {
     canAccessAdminPanel: true,
-    canAccessAllRegionsData: true,
-    canViewUsersData: true,
+    canAccessPromsListData: true, //canAccessAllRegionsData
+    canVisiblePromsListAllData: true,
+    canVisiblePromsListData: false,
+    // canViewUsersData: true,
     canViewUsersPlans: true,
     canViewUsersFocus: true,
     // canEditUsers: true,
@@ -10,15 +12,19 @@ const ACCESS_MAP = {
   },
   rmUser: {
     canAccessAdminPanel: true,
-    canAccessAllRegionsData: false,
-    canViewUsersData: true,
+    canAccessPromsListData: true, //canAccessAllRegionsData
+    canVisiblePromsListAllData: false,
+    canVisiblePromsListData: true,
+    // canViewUsersData: true,
     canViewUsersPlans: true,
     canViewUsersFocus: true,
   },
   rffm: {
     canAccessAdminPanel: true,
-    canAccessAllRegionsData: false,
-    canViewUsersData: false,
+    canAccessPromsListData: true, //canAccessAllRegionsData
+    canVisiblePromsListAllData: false,
+    canVisiblePromsListData: true,
+    // canViewUsersData: false,
     canViewUsersPlans: true,
     canViewUsersFocus: true,
   },

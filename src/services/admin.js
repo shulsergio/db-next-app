@@ -5,7 +5,7 @@ export const getAllPlans = async () => {
   return await PlansCollection.find().lean();
 };
 // ---------
-export const getAllUsers = async () => {
+export const getAllPromoters = async () => {
   const users = await UsersCollection.find({ role: 'promoter' }).lean();
   return users;
 };

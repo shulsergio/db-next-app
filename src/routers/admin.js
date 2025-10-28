@@ -5,7 +5,7 @@ import { authenticate } from '../utils/authenticate.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import {
   getAllPlansController,
-  getAllUsersController,
+  getAllPromotersController,
   getPromotersController,
 } from '../controllers/admin.js';
 import { getShopByIdController } from '../controllers/shops.js';
@@ -21,15 +21,15 @@ adminRouter.get(
 adminRouter.get(
   '/promoters',
   authenticate,
-  requirePermission('canViewUsersData'),
+  requirePermission('canAccessPromsListData'),
   ctrlWrapper(getPromotersController),
 );
 
 adminRouter.get(
   '/allPromoters',
   authenticate,
-  requirePermission('canViewUsersData'),
-  ctrlWrapper(getAllUsersController),
+  requirePermission('canAccessPromsListAllData'),
+  ctrlWrapper(getAllPromotersController),
 );
 
 adminRouter.get('/shops', authenticate, ctrlWrapper(getShopByIdController));
