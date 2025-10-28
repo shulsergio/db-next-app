@@ -28,7 +28,7 @@ adminRouter.get(
 adminRouter.get(
   '/allPromoters',
   authenticate,
-  requirePermission('canAccessPromsListAllData'),
+  requirePermission('canAccessPromsListData'),
   ctrlWrapper(getAllPromotersController),
 );
 
