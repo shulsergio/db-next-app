@@ -33,8 +33,13 @@ export const loginUserController = async (req, res) => {
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
   }
+
   const session = await loginUser(req.body);
+  console.log('!!!!!! session', session);
+
   const userPermissions = ACCESS_MAP[user.role] || {};
+  console.log('!!!!!! userPermissions', userPermissions);
+  console.log('!!!!!! user.role', user.role);
 
   const updatedUser = await UsersCollection.findByIdAndUpdate(
     user._id,
