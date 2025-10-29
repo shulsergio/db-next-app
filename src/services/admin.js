@@ -11,10 +11,15 @@ export const getAllPromoters = async () => {
 };
 
 export const getPromoters = async (userType, region) => {
+  let findLevel = {};
+  if (region === 'all') {
+    findLevel = { role: 'promoter', userType: userType };
+  } else {
+    findLevel = { role: 'promoter', userType: userType, region: region };
+  }
+
   const users = await UsersCollection.find({
-    role: 'promoter',
-    userType: userType,
-    region: region,
+    findLevel,
   }).lean();
   return users;
 };
