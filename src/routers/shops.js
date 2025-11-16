@@ -1,8 +1,13 @@
-import { getShopByIdController } from '../controllers/shops.js';
+import {
+  getAllShopsController,
+  getShopByIdController,
+} from '../controllers/shops.js';
 import { authenticate } from '../utils/authenticate.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { Router } from 'express';
 const shopsRouter = Router();
 
 shopsRouter.get('/:storeId', authenticate, ctrlWrapper(getShopByIdController));
+shopsRouter.get('/', authenticate, ctrlWrapper(getAllShopsController));
+
 export default shopsRouter;
