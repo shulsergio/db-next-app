@@ -10,7 +10,15 @@ const usersSchema = new Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ['admin', 'rffm', 'rmUser', 'promoter', 'merchendiser', 'trainer', 'guest'],
+      enum: [
+        'admin',
+        'rffm',
+        'rmUser',
+        'promoter',
+        'merchendiser',
+        'trainer',
+        'guest',
+      ],
       default: 'promoter',
     },
     userType: {
@@ -26,6 +34,7 @@ const usersSchema = new Schema(
     mobile: { type: String, default: '' },
     INN: { type: String, default: '' },
     gender: { type: String, enum: ['man', 'woman'], default: 'man' },
+    dateOfBirth: { type: Date, default: null },
     uniform: { type: String },
 
     shop: { type: String, required: true },

@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 import { getUserById } from '../services/admin.js';
-import { patchPassword } from '../services/auth.js';
+import { patchDateOfBirth, patchPassword } from '../services/auth.js';
 
 export const getUserByIdController = async (req, res, next) => {
   try {
@@ -50,6 +50,18 @@ export const patchPasswordController = async (req, res, next) => {
   const user = req.user;
   const body = req.body;
   const data = await patchPassword(user, body);
+
+  res.json({
+    status: 200,
+    message: `Successfully patched a user!`,
+    data,
+  });
+};
+
+export const patchDateOfBirthController = async (req, res, next) => {
+  const user = req.user._id;
+  const { dateOfBirth } = req.body;
+  const data = await patchDateOfBirth(user, dateOfBirth);
 
   res.json({
     status: 200,

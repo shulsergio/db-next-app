@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   getUserByIdController,
+  patchDateOfBirthController,
   patchPasswordController,
   //   patchUserController,
 } from '../controllers/users.js';
@@ -14,6 +15,12 @@ usersRouter.patch(
   '/password',
   authenticate,
   ctrlWrapper(patchPasswordController),
+);
+
+usersRouter.patch(
+  '/dateOfBirth',
+  authenticate,
+  ctrlWrapper(patchDateOfBirthController),
 );
 
 export default usersRouter;

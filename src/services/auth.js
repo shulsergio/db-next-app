@@ -127,3 +127,15 @@ export const patchPassword = async (user, body) => {
     return updatedUser;
   }
 };
+
+export const patchDateOfBirth = async (userId, dateOfBirth) => {
+  const updatedUser = await UsersCollection.findByIdAndUpdate(
+    userId,
+    { dateOfBirth: dateOfBirth },
+    { new: true, select: publicFields },
+  );
+  if (!updatedUser) {
+    throw createHttpError(404, 'User not found.');
+  }
+  return updatedUser;
+};
