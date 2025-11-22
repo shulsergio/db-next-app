@@ -59,13 +59,23 @@ export const patchPasswordController = async (req, res, next) => {
 };
 
 export const patchDateOfBirthController = async (req, res, next) => {
-  const user = req.user._id;
-  const { dateOfBirth } = req.body;
-  const data = await patchDateOfBirth(user, dateOfBirth);
+  try {
+    if (!req.user || !req.user._id) {
+      return next(
+        createHttpError(401, 'Unauthorized: User not authenticated.'),
+      );
+    }
+    const user = req.user._id;
+    const { dateOfBirth } = req.body;
+    const data = await patchDateOfBirth(user, dateOfBirth);
 
-  res.json({
-    status: 200,
-    message: `Successfully patched a user!`,
-    data,
-  });
+    res.json({
+      status: 200,
+      message: `Successfully patched a user!`,
+      data,
+    });
+  } catch (error) {
+    console.error('Error in updateUniformController:', error);
+    next(error);
+  }
 };
