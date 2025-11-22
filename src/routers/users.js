@@ -18,7 +18,7 @@ usersRouter.patch(
 );
 
 usersRouter.patch(
-  '/dateOfBirth',
+  '/:id/dateOfBirth',
   authenticate,
   ctrlWrapper(patchDateOfBirthController),
 );
