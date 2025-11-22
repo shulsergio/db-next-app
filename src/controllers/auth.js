@@ -70,6 +70,7 @@ export const loginUserController = async (req, res) => {
         city: updatedUser.city,
         INN: updatedUser.INN,
         mobile: updatedUser.mobile,
+        dateOfBirth: updatedUser.dateOfBirth,
         dateOfHired: updatedUser.DateOfHired,
         dateOfFired: updatedUser.DateOfFired,
         gender: updatedUser.gender,
