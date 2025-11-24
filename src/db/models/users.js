@@ -36,7 +36,7 @@ const usersSchema = new Schema(
     gender: { type: String, enum: ['man', 'woman'], default: 'man' },
     dateOfBirth: { type: Date },
     uniform: { type: String },
-
+    activeUser: { type: Boolean, default: true },
     shop: { type: String, required: true },
     DateOfHired: { type: Date, default: null },
     DateOfFired: { type: Date, default: null },
