@@ -33,7 +33,7 @@ const usersSchema = new Schema(
     city: { type: String, default: '' },
     mobile: { type: String, default: '' },
     INN: { type: String, default: '' },
-    gender: { type: String, enum: ['man', 'woman'], default: 'man' },
+    gender: { type: String, enum: ['male', 'female'], default: 'male' },
     dateOfBirth: { type: Date },
     uniform: { type: String },
     activeUser: { type: Boolean, default: true },
