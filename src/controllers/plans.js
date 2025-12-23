@@ -1,5 +1,9 @@
 // import createHttpError from 'http-errors';
-import { getListOfTopBonusesByStore, getPlans } from '../services/plans.js';
+import {
+  getListOfTopBonusesByStore,
+  getPlans,
+  getweeklyPromsPlans,
+} from '../services/plans.js';
 
 export const getPlansController = async (req, res, next) => {
   try {
@@ -14,6 +18,23 @@ export const getPlansController = async (req, res, next) => {
     });
   } catch (error) {
     console.error('Error in getPlansController:', error);
+    next(error);
+  }
+};
+
+export const getweeklyPromsPlansController = async (req, res, next) => {
+  try {
+    const plans = await getweeklyPromsPlans({ userId: req.user._id });
+
+    res.status(200).json({
+      status: 200,
+      message: 'Successfully retrieved weeklyPromsPlans!',
+      data: {
+        plans,
+      },
+    });
+  } catch (error) {
+    console.error('Error in getweeklyPromsPlansController:', error);
     next(error);
   }
 };

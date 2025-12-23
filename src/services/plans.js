@@ -1,8 +1,13 @@
 import { PlansCollection } from '../db/models/plans.js';
 import { topBonusesCollection } from '../db/models/topBonuses.js';
+import { WeeklyPromsPlansCollection } from '../db/models/weeklyPromsPlans.js';
 
 export const getPlans = async (query = {}) => {
   return await PlansCollection.find(query).lean();
+};
+
+export const getweeklyPromsPlans = async (query = {}) => {
+  return await WeeklyPromsPlansCollection.find(query).lean();
 };
 
 export const getListOfTopBonusesByStore = async (storeId, type, week) => {
