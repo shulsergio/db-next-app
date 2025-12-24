@@ -27,6 +27,6 @@ weeklyPromsPlansSchema.methods.toJSON = function () {
 };
 
 export const WeeklyPromsPlansCollection = model(
-  'weeklyPromsPlans',
+  'weeklypromsplans',
   weeklyPromsPlansSchema,
 );
