@@ -25,7 +25,7 @@ export const getPlansController = async (req, res, next) => {
 export const getweeklyPromsPlansController = async (req, res, next) => {
   try {
     const plans = await getweeklyPromsPlans({ userId: req.user._id });
-
+    console.log('!!! getweeklyPromsPlans', plans);
     res.status(200).json({
       status: 200,
       message: 'Successfully retrieved weeklyPromsPlans!',
