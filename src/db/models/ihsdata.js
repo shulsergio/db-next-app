@@ -15,7 +15,7 @@ const IhsDataSchema = new Schema(
       required: false,
     },
     share: {
-      type: Number,
+      type: String,
       required: false,
     },
     category: {
