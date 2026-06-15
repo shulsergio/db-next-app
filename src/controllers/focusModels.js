@@ -10,6 +10,7 @@ export const getFocusModelsController = async (req, res, next) => {
       selectedMonth,
       isFocusOnly,
       isBonusOnly,
+      search,
     } = req.query;
     if (!type) {
       return res.status(400).json({
@@ -38,6 +39,7 @@ export const getFocusModelsController = async (req, res, next) => {
       selectedMonth,
       isFocusOnly === 'true' ? 1 : 0,
       isBonusOnly === 'true' ? 1 : 0,
+      search,
     );
     res.status(200).json({
       status: 200,

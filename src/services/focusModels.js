@@ -8,6 +8,7 @@ export const getFocusModels = async (
   selectedMonth,
   isFocusOnly,
   isBonusOnly,
+  search,
 ) => {
   try {
     const skipModels = (curPage - 1) * limit;
@@ -26,12 +27,18 @@ export const getFocusModels = async (
     if (monthToFilter !== 'no') {
       filter.month = monthToFilter;
     }
+    if (search && search.trim() !== '') {
+      filter.modelName = { $regex: search.trim(), $options: 'i' };
+    }
+
     const totalCount = await focusModelsCollection.countDocuments(filter);
+
     const data = await focusModelsCollection
       .find(filter)
       .skip(skipModels)
       .limit(limit)
       .lean();
+
     return { data, totalCount };
   } catch (error) {
     console.log(error);
