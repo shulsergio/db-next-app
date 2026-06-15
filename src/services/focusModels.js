@@ -28,7 +28,7 @@ export const getFocusModels = async (
       filter.month = monthToFilter;
     }
     if (search && search.trim() !== '') {
-      filter.modelName = { $regex: search.trim(), $options: 'i' };
+      filter.sku = { $regex: search.trim(), $options: 'i' };
     }
 
     console.log(
@@ -37,7 +37,7 @@ export const getFocusModels = async (
     );
 
     const totalCount = await focusModelsCollection.countDocuments(filter);
-
+    console.log('=== totalCount from Collection ===', totalCount);
     const data = await focusModelsCollection
       .find(filter)
       .skip(skipModels)
