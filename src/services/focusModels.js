@@ -31,6 +31,11 @@ export const getFocusModels = async (
       filter.modelName = { $regex: search.trim(), $options: 'i' };
     }
 
+    console.log(
+      '=== Итоговый фильтр в БД ===',
+      JSON.stringify(filter, null, 2),
+    );
+
     const totalCount = await focusModelsCollection.countDocuments(filter);
 
     const data = await focusModelsCollection

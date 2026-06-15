@@ -31,6 +31,8 @@ export const getFocusModelsController = async (req, res, next) => {
     console.log('!!!getFocusModelsController - editType:', editType);
     console.log('!!!getFocusModelsController - page:', curPage);
     console.log('!!!getFocusModelsController - size:', size);
+    console.log('!!!getFocusModelsController - search:', search);
+
     const { data, totalCount } = await getFocusModels(
       editType,
       size,
