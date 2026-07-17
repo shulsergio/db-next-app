@@ -12,7 +12,9 @@ const plansSchema = new Schema(
     totalQlySOfact: { type: Number },
     focusQlySOplan: { type: Number },
     focusQlySOfact: { type: Number },
+    notes: { type: String, required: false },
     date: { type: Date, required: true },
+
     //682f8e184a19781cae4ce9e8 userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   { timestamps: true, versionKey: false },
