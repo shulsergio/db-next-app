@@ -17,7 +17,11 @@ const shopsSchema = new Schema(
       default: 'Kharkiv',
     },
 
-    //682f8e184a19781cae4ce9e8 userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+    merchandiserId: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      default: null,
+    },
   },
   { timestamps: true, versionKey: false },
 );
