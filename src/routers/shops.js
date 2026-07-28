@@ -1,3 +1,8 @@
+import { getMerchShopsController } from '../controllers/merch.js';
+import {
+  getShopPopsController,
+  updateShopPopsController,
+} from '../controllers/pops.js';
 import {
   getAllShopsController,
   getShopByIdController,
@@ -6,8 +11,20 @@ import { authenticate } from '../utils/authenticate.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { Router } from 'express';
 const shopsRouter = Router();
+shopsRouter.get(
+  '/:shopId/pops',
+  authenticate,
+  ctrlWrapper(getShopPopsController),
+);
 
+shopsRouter.post(
+  '/:shopId/pops',
+  authenticate,
+  ctrlWrapper(updateShopPopsController),
+);
 shopsRouter.get('/:storeId', authenticate, ctrlWrapper(getShopByIdController));
 shopsRouter.get('/', authenticate, ctrlWrapper(getAllShopsController));
+
+shopsRouter.get('/merch/shops', authenticate, getMerchShopsController);
 
 export default shopsRouter;
