@@ -22,6 +22,7 @@ export const getShopPopsController = async (req, res, next) => {
       const statusRecord = statusMap.get(pop._id.toString());
       return {
         popId: pop._id,
+        popCode: pop.popCode,
         name: pop.name,
         dep: pop.dep,
         group: pop.group,

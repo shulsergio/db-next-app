@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const popsSchema = new Schema(
   {
+    popCode: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
     dep: { type: String, enum: ['AV', 'DA'], default: 'DA' },
     group: {
