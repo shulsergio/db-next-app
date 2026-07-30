@@ -37,7 +37,7 @@ const usersSchema = new Schema(
     dateOfBirth: { type: Date },
     uniform: { type: String },
     activeUser: { type: Boolean, default: true },
-    shop: { type: String, required: true },
+    shop: { type: String, default: null },
     DateOfHired: { type: Date, default: null },
     DateOfFired: { type: Date, default: null },
     lastVisit: { type: Date, default: Date.now },
