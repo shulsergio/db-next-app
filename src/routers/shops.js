@@ -10,7 +10,15 @@ import {
 import { authenticate } from '../utils/authenticate.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { Router } from 'express';
+
 const shopsRouter = Router();
+
+shopsRouter.get(
+  '/merch/shops',
+  authenticate,
+  ctrlWrapper(getMerchShopsController),
+);
+
 shopsRouter.get(
   '/:shopId/pops',
   authenticate,
@@ -24,7 +32,5 @@ shopsRouter.post(
 );
 shopsRouter.get('/:storeId', authenticate, ctrlWrapper(getShopByIdController));
 shopsRouter.get('/', authenticate, ctrlWrapper(getAllShopsController));
-
-shopsRouter.get('/merch/shops', authenticate, getMerchShopsController);
 
 export default shopsRouter;
