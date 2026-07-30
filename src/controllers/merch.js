@@ -1,4 +1,4 @@
-import { getAllShops } from '../services/shops';
+import { getAllShops } from '../services/shops.js';
 
 // ---------------
 

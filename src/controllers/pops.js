@@ -1,5 +1,5 @@
-import { PopsCollection } from '../db/models/pops';
-import { ShopPopStatusesCollection } from '../db/models/shopPopsStatus';
+import { PopsCollection } from '../db/models/pops.js';
+import { ShopPopStatusesCollection } from '../db/models/shopPopsStatus.js';
 
 // ------------
 
