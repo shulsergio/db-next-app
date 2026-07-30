@@ -15,7 +15,7 @@ const usersSchema = new Schema(
         'rffm',
         'rmUser',
         'promoter',
-        'merchendiser',
+        'merchandiser',
         'trainer',
         'guest',
       ],
