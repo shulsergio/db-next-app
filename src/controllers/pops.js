@@ -8,7 +8,6 @@ export const getShopPopsController = async (req, res, next) => {
     const { shopId } = req.params;
 
     const allPops = await PopsCollection.find({ isActive: true }).lean();
-
     const existingStatuses = await ShopPopStatusesCollection.find({
       shopId,
     }).lean();
@@ -17,7 +16,6 @@ export const getShopPopsController = async (req, res, next) => {
       existingStatuses.map((item) => [item.popId.toString(), item]),
     );
 
-    // 3. Формируем единый массив для фронтенда
     const result = allPops.map((pop) => {
       const statusRecord = statusMap.get(pop._id.toString());
       return {
@@ -27,14 +25,15 @@ export const getShopPopsController = async (req, res, next) => {
         dep: pop.dep,
         group: pop.group,
         description: pop.description,
-        isPlaced: statusRecord ? statusRecord.isPlaced : false,
+        // Возвращаем сохраненные количества (или 0 по умолчанию)
+        qtyPlaced: statusRecord ? statusRecord.qtyPlaced : 0,
+        qtyTotal: statusRecord ? statusRecord.qtyTotal : 0,
         updatedAt: statusRecord ? statusRecord.updatedAt : null,
       };
     });
 
     res.status(200).json({
       status: 200,
-      message: 'Successfully retrieved shop POP statuses',
       data: result,
     });
   } catch (error) {
@@ -49,6 +48,7 @@ export const getShopPopsController = async (req, res, next) => {
 export const updateShopPopsController = async (req, res, next) => {
   try {
     const { shopId } = req.params;
+    // Ожидаем массив [{ popId: "...", qtyPlaced: 5, qtyTotal: 10 }, ...]
     const { statuses } = req.body;
     const userId = req.user._id;
 
@@ -59,13 +59,13 @@ export const updateShopPopsController = async (req, res, next) => {
       });
     }
 
-    // Собираем операции для массового обновления в 1 запрос к MongoDB
     const operations = statuses.map((item) => ({
       updateOne: {
         filter: { shopId, popId: item.popId },
         update: {
           $set: {
-            isPlaced: item.isPlaced,
+            qtyPlaced: Number(item.qtyPlaced) || 0,
+            qtyTotal: Number(item.qtyTotal) || 0,
             updatedBy: userId,
           },
         },
@@ -77,7 +77,7 @@ export const updateShopPopsController = async (req, res, next) => {
 
     res.status(200).json({
       status: 200,
-      message: 'POP statuses updated successfully',
+      message: 'POP quantities updated successfully',
     });
   } catch (error) {
     next(error);

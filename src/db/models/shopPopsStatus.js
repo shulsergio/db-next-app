@@ -12,10 +12,17 @@ const shopPopsStatusesSchema = new Schema(
       ref: 'pops',
       required: true,
     },
-    isPlaced: {
-      type: Boolean,
+    qtyPlaced: {
+      type: Number,
       required: true,
-      default: false,
+      default: 0,
+      min: 0,
+    },
+    qtyTotal: {
+      type: Number,
+      required: true,
+      default: 0,
+      min: 0,
     },
     updatedBy: {
       type: Schema.Types.ObjectId,
