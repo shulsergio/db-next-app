@@ -1,5 +1,6 @@
 import { getMerchShopsController } from '../controllers/merch.js';
 import {
+  exportPopStatusesController,
   getShopPopsController,
   updateShopPopsController,
 } from '../controllers/pops.js';
@@ -32,5 +33,11 @@ shopsRouter.post(
 );
 shopsRouter.get('/:storeId', authenticate, ctrlWrapper(getShopByIdController));
 shopsRouter.get('/', authenticate, ctrlWrapper(getAllShopsController));
+
+shopsRouter.get(
+  '/pops/export',
+  authenticate,
+  ctrlWrapper(exportPopStatusesController),
+);
 
 export default shopsRouter;

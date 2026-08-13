@@ -1,5 +1,7 @@
 import { PopsCollection } from '../db/models/pops.js';
 import { ShopPopStatusesCollection } from '../db/models/shopPopsStatus.js';
+import ExcelJS from 'exceljs'; 
+
 
 // ------------
 
@@ -80,6 +82,85 @@ export const updateShopPopsController = async (req, res, next) => {
       message: 'POP quantities updated successfully',
     });
   } catch (error) {
+    next(error);
+  }
+};
+
+// -------------
+
+
+
+export const exportPopStatusesController = async (req, res, next) => {
+  try {
+    // 1. Получаем данные и разворачиваем (populate) все связи по ObjectId
+    const statuses = await ShopPopStatusesCollection.find()
+      .populate('shopId', 'name storeId city address') // Подтягиваем данные магазина
+      .populate('popId', 'popCode name group dep') // Подтягиваем данные POP
+      .populate('updatedBy', 'name email') // Подтягиваем ФИО мерча
+      .lean();
+
+    // 2. Создаем рабочую книгу Excel
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Отчет по POP');
+
+    // 3. Задаем колонки таблицы
+    worksheet.columns = [
+      { header: 'ID Магазина', key: 'storeId', width: 15 },
+      { header: 'Магазин', key: 'shopName', width: 30 },
+      { header: 'Город', key: 'city', width: 18 },
+      { header: 'Код POP', key: 'popCode', width: 12 },
+      { header: 'Название POP', key: 'popName', width: 30 },
+      { header: 'Группа', key: 'group', width: 12 },
+      { header: 'Департамент', key: 'dep', width: 12 },
+      { header: 'Размещено (qtyPlaced)', key: 'qtyPlaced', width: 22 },
+      { header: 'План/Всего (qtyTotal)', key: 'qtyTotal', width: 22 },
+      { header: 'Мерчендайзер', key: 'merchandiser', width: 25 },
+      { header: 'Дата обновления', key: 'updatedAt', width: 20 },
+    ];
+
+    // Стилизуем шапку (жирный шрифт и серый фон)
+    const headerRow = worksheet.getRow(1);
+    headerRow.font = { bold: true };
+    headerRow.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFE2E8F0' },
+    };
+
+    // 4. Заполняем строки чистыми плоскими данными вместо объектов
+    statuses.forEach((item) => {
+      worksheet.addRow({
+        storeId: item.shopId?.storeId || '-',
+        shopName: item.shopId?.name || 'Удаленный магазин',
+        city: item.shopId?.city || '-',
+        popCode: item.popId?.popCode || '-',
+        popName: item.popId?.name || 'Удаленный POP',
+        group: item.popId?.group || '-',
+        dep: item.popId?.dep || '-',
+        qtyPlaced: item.qtyPlaced || 0,
+        qtyTotal: item.qtyTotal || 0,
+        merchandiser: item.updatedBy?.name || 'Неизвестно',
+        updatedAt: item.updatedAt
+          ? new Date(item.updatedAt).toLocaleString('ru-RU')
+          : '-',
+      });
+    });
+
+    // 5. Заголовки для скачивания файла
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=pop_audit_report.xlsx',
+    );
+
+    // 6. Отправляем готовый файл во флоке
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (error) {
+    console.error('Export Error:', error);
     next(error);
   }
 };
