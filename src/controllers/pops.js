@@ -101,18 +101,18 @@ export const exportPopStatusesController = async (req, res, next) => {
 
     // 3. Задаем колонки таблицы
     worksheet.columns = [
-      { header: 'ID Магазина', key: 'storeId', width: 15 },
-      { header: 'Магазин', key: 'shopName', width: 30 },
-      { header: 'Город', key: 'city', width: 18 },
-      { header: 'Код POP', key: 'popCode', width: 18 },
-      { header: 'Название POP', key: 'popName', width: 30 },
-      { header: 'Тип POP', key: 'popType', width: 15 },
-      { header: 'Группа', key: 'group', width: 12 },
-      { header: 'Департамент', key: 'dep', width: 12 },
-      { header: 'Размещено', key: 'qtyPlaced', width: 15 },
-      { header: 'План/Всего', key: 'qtyTotal', width: 15 },
-      { header: 'Мерчендайзер', key: 'merchandiser', width: 25 },
-      { header: 'Дата обновления', key: 'updatedAt', width: 20 },
+      { header: 'MCS ID', key: 'storeId', width: 15 },
+      { header: 'Shop', key: 'shopName', width: 30 },
+      { header: 'City', key: 'city', width: 18 },
+      { header: 'POP ID', key: 'popCode', width: 18 },
+      { header: 'POP name', key: 'popName', width: 30 },
+      { header: 'POP type', key: 'popType', width: 15 },
+      { header: 'Group', key: 'group', width: 12 },
+      { header: 'DEP', key: 'dep', width: 12 },
+      { header: 'Placed', key: 'qtyPlaced', width: 15 },
+      { header: 'Total products', key: 'qtyTotal', width: 15 },
+      { header: 'Merch ID', key: 'merchandiser', width: 25 },
+      { header: 'Date', key: 'updatedAt', width: 20 },
     ];
 
     // Стилизуем шапку (жирный шрифт и серый фон)
