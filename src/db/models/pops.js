@@ -10,6 +10,7 @@ const popsSchema = new Schema(
       enum: ['WM', 'REF', 'VC', 'MWO', 'DW', 'Bin', 'TV', 'Monitors', 'Sound'],
       default: 'WM',
     },
+    type: { type: String, default: '' },
     description: { type: String, default: '' },
     isActive: { type: Boolean, default: true },
   },

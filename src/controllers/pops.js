@@ -1,7 +1,6 @@
 import { PopsCollection } from '../db/models/pops.js';
 import { ShopPopStatusesCollection } from '../db/models/shopPopsStatus.js';
-import ExcelJS from 'exceljs'; 
-
+import ExcelJS from 'exceljs';
 
 // ------------
 
@@ -26,8 +25,8 @@ export const getShopPopsController = async (req, res, next) => {
         name: pop.name,
         dep: pop.dep,
         group: pop.group,
+        type: pop.type || '',
         description: pop.description,
-        // Возвращаем сохраненные количества (или 0 по умолчанию)
         qtyPlaced: statusRecord ? statusRecord.qtyPlaced : 0,
         qtyTotal: statusRecord ? statusRecord.qtyTotal : 0,
         updatedAt: statusRecord ? statusRecord.updatedAt : null,
@@ -88,15 +87,12 @@ export const updateShopPopsController = async (req, res, next) => {
 
 // -------------
 
-
-
 export const exportPopStatusesController = async (req, res, next) => {
   try {
-    // 1. Получаем данные и разворачиваем (populate) все связи по ObjectId
     const statuses = await ShopPopStatusesCollection.find()
-      .populate('shopId', 'name storeId city address') // Подтягиваем данные магазина
-      .populate('popId', 'popCode name group dep') // Подтягиваем данные POP
-      .populate('updatedBy', 'name email') // Подтягиваем ФИО мерча
+      .populate('shopId', 'name storeId city address')
+      .populate('popId', 'popCode name group dep')
+      .populate('updatedBy', 'name email')
       .lean();
 
     // 2. Создаем рабочую книгу Excel
@@ -108,12 +104,13 @@ export const exportPopStatusesController = async (req, res, next) => {
       { header: 'ID Магазина', key: 'storeId', width: 15 },
       { header: 'Магазин', key: 'shopName', width: 30 },
       { header: 'Город', key: 'city', width: 18 },
-      { header: 'Код POP', key: 'popCode', width: 12 },
+      { header: 'Код POP', key: 'popCode', width: 18 },
       { header: 'Название POP', key: 'popName', width: 30 },
+      { header: 'Тип POP', key: 'popType', width: 15 },
       { header: 'Группа', key: 'group', width: 12 },
       { header: 'Департамент', key: 'dep', width: 12 },
-      { header: 'Размещено (qtyPlaced)', key: 'qtyPlaced', width: 22 },
-      { header: 'План/Всего (qtyTotal)', key: 'qtyTotal', width: 22 },
+      { header: 'Размещено', key: 'qtyPlaced', width: 15 },
+      { header: 'План/Всего', key: 'qtyTotal', width: 15 },
       { header: 'Мерчендайзер', key: 'merchandiser', width: 25 },
       { header: 'Дата обновления', key: 'updatedAt', width: 20 },
     ];
@@ -135,6 +132,7 @@ export const exportPopStatusesController = async (req, res, next) => {
         city: item.shopId?.city || '-',
         popCode: item.popId?.popCode || '-',
         popName: item.popId?.name || 'Удаленный POP',
+        popType: item.popId?.type || '-',
         group: item.popId?.group || '-',
         dep: item.popId?.dep || '-',
         qtyPlaced: item.qtyPlaced || 0,
