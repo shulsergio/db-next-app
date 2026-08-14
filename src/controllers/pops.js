@@ -90,7 +90,7 @@ export const updateShopPopsController = async (req, res, next) => {
 export const exportPopStatusesController = async (req, res, next) => {
   try {
     const statuses = await ShopPopStatusesCollection.find()
-      .populate('shopId', 'name storeId city address')
+      .populate('shopId', 'name storeId city chain address')
       .populate('popId', 'popCode name group dep')
       .populate('updatedBy', 'name email')
       .lean();
@@ -102,6 +102,7 @@ export const exportPopStatusesController = async (req, res, next) => {
     // 3. Задаем колонки таблицы
     worksheet.columns = [
       { header: 'MCS ID', key: 'storeId', width: 15 },
+      { header: 'Chain', key: 'chain', width: 15 },
       { header: 'Shop', key: 'shopName', width: 30 },
       { header: 'City', key: 'city', width: 18 },
       { header: 'POP ID', key: 'popCode', width: 18 },
@@ -130,6 +131,7 @@ export const exportPopStatusesController = async (req, res, next) => {
         storeId: item.shopId?.storeId || '-',
         shopName: item.shopId?.name || 'Удаленный магазин',
         city: item.shopId?.city || '-',
+        chain: item.shopId?.chain || '-',
         popCode: item.popId?.popCode || '-',
         popName: item.popId?.name || 'Удаленный POP',
         popType: item.popId?.type || '-',
