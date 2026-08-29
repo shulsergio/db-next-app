@@ -8,6 +8,7 @@ import focusModelsRouter from './focusModels.js';
 import shopsRouter from './shops.js';
 import motivationRouter from './motivation.js';
 import usersRouter from './users.js';
+import merchRouter from './merch.js';
 
 const indexRouter = Router();
 console.log('***** CONSOLE - index - IS OK');
@@ -15,6 +16,7 @@ indexRouter.use('/auth', authRouter);
 indexRouter.use('/users', usersRouter);
 indexRouter.use('/shops', shopsRouter);
 indexRouter.use('/plans', plansRouter);
+indexRouter.use('/merch', merchRouter);
 indexRouter.use('/admin', adminRouter);
 indexRouter.use('/ihsdatas', ihsRouter);
 indexRouter.use('/matrixDatas', matrixRouter);
