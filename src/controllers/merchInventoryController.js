@@ -1,5 +1,5 @@
-import { PopsCollection } from '../models/pops.js';
-import { MerchPopInventoryCollection } from '../models/merchPopInventory.js';
+import { PopsCollection } from '../db/models/pops.js';
+import { MerchPopInventoryCollection } from '../db/models/merchPopInventory.js';
 
 export const getMerchInventoryController = async (req, res, next) => {
   try {
