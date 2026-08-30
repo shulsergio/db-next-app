@@ -2,9 +2,9 @@ import { Router } from 'express';
 import {
   getMerchInventoryController,
   updateMerchInventoryController,
-} from '../controllers/merchInventoryController';
-import { authenticate } from '../utils/authenticate';
-import { ctrlWrapper } from '../utils/ctrlWrapper';
+} from '../controllers/merchInventoryController.js';
+import { authenticate } from '../utils/authenticate.js';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const merchRouter = Router();
 
