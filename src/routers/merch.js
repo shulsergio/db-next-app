@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  exportMerchInventoryController,
   getMerchInventoryController,
   updateMerchInventoryController,
 } from '../controllers/merchInventoryController.js';
@@ -18,6 +19,12 @@ merchRouter.post(
   '/inventory',
   authenticate,
   ctrlWrapper(updateMerchInventoryController),
+);
+
+merchRouter.get(
+  '/inventory/export',
+  authenticate,
+  ctrlWrapper(exportMerchInventoryController),
 );
 
 export default merchRouter;
