@@ -25,6 +25,6 @@ const merchPopInventorySchema = new Schema(
 merchPopInventorySchema.index({ userId: 1, popId: 1 }, { unique: true });
 
 export const MerchPopInventoryCollection = model(
-  'merchPopInventories',
+  'merchpopinventories',
   merchPopInventorySchema,
 );
