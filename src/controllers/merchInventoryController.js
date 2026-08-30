@@ -1,4 +1,4 @@
-import { PopsCollection } from '../models/pop.js';
+import { PopsCollection } from '../models/pops.js';
 import { MerchPopInventoryCollection } from '../models/merchPopInventory.js';
 
 export const getMerchInventoryController = async (req, res, next) => {
