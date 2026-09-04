@@ -6,6 +6,8 @@ import pino from 'pino-http';
 
 const allowedOrigins = [
   'http://new-next-project-sand.vercel.app',
+  'https://fieldhub.in.ua',
+  'https://www.fieldhub.in.ua',
   'https://sams-project.vercel.app',
   'https://new-next-project-sand.vercel.app',
   'http://localhost:3000',
